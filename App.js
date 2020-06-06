@@ -3,6 +3,7 @@ import Setup from "./src/boot/setup";
 import { Root } from 'native-base';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
+import SplashScreen from './app/screens/SplashScreen'
 
 export default class App extends Component {
   constructor(props) {
