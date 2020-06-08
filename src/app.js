@@ -3,7 +3,9 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import Main from '../Main';
 import User from '../User';
-import Tendero from '../Tendero';
+import Currier from '../Tendero';
+import LoginScreenUser from '../app/screens/LoginScreenUser';
+import LoginScreenCurrier from '../app/screens/LoginScreenCurrier';
 
 const LoginNavigator = createStackNavigator({
   Main : {
@@ -14,18 +16,32 @@ const LoginNavigator = createStackNavigator({
       headerShown: false
     }
   },
+  LoginUser : {
+    screen : LoginScreenUser,
+    navigationOptions : {
+      title : 'Go Back',
+      headerShown: true
+    }
+  },
+  LoginCurrier : {
+    screen : LoginScreenCurrier,
+    navigationOptions : {
+      title : 'Go Back',
+      headerShown: true,
+    }
+  },
   User : {
     screen : User,
     navigationOptions : {
-      title : 'Investor',
-      headerShown: false
+      title : 'Login',
+      headerShown: true,
     }
   },
-  Tendero : {
-    screen : Tendero,
+  Currier : {
+    screen : Currier,
     navigationOptions : {
-      title : 'Rappi Tendero',
-      headerShown: false
+      title : 'Login',
+      headerShown: true,
     }
   }
 });

@@ -8,7 +8,6 @@ export default function MyTextInput(props){
     return (
       <Input
         style={{alignItems: 'center'}}
-        containerStyle={{marginBottom:20,borderBottomColor: color.LIGHTPRIMARYCOLOR, borderBottomWidth: 1}}
         inputStyle={{ fontSize:18,paddingVertical: 10,
             paddingHorizontal:8, marginTop:12,
             color: color.PRIMARYCOLOR,

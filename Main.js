@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { loginStyles} from '../final_project/app/styles/styles'
 
 
 class Main extends Component {
@@ -9,12 +10,12 @@ class Main extends Component {
     };
   }
 
-  user = () => {
-    this.props.navigation.navigate('User')
+  LoginUser = () => {
+    this.props.navigation.navigate('LoginUser')
   }
 
-  tendero = () => {
-    this.props.navigation.navigate('Tendero')
+  LoginCurrier = () => {
+    this.props.navigation.navigate('LoginCurrier')
   }
 
   render() {
@@ -22,12 +23,16 @@ class Main extends Component {
       <View style={styles.container}>
         <View>
           <Text style={styles.text}>You are:</Text>
-        </View>  
-        <View style={styles.button}>
-          <Button color="#ff0000" title="Rappi User" onPress={this.user}/>
         </View>
-        <View style={styles.button}>
-          <Button color="#ff0000" title="Rappi Tendero" onPress={this.tendero}/>
+        <View style={loginStyles.btnMain}>
+          <TouchableOpacity>
+            <Text style={ loginStyles.btntxt} onPress={this.LoginUser}>RappiUser</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={loginStyles.btnMain}>
+          <TouchableOpacity>
+            <Text style={ loginStyles.btntxt} onPress={this.LoginCurrier}>RappiTendero</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -39,6 +44,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: 'white',
     },
     button: {
         color: '#fff',

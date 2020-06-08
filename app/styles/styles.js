@@ -27,6 +27,7 @@ const loginStyles = StyleSheet.create({
         paddingTop: 50,
         marginBottom: -15,
         alignItems: 'center',
+        backgroundColor: color.WHITE,
     },
 
     btnMain: {
@@ -56,6 +57,10 @@ const loginStyles = StyleSheet.create({
     txtTransparent: {
         color: color.ORANGE,
         fontSize: 14,
+    },
+    
+    background: {
+        color: color.WHITE
     }
 })
 
