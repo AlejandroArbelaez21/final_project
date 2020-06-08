@@ -9,7 +9,7 @@ import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {createAppContainer} from 'react-navigation';
 
 const TenStack = createStackNavigator({
-    MyInvestors: {
+    Investors: {
         screen: MyInvestors,
         navigationOptions: () => ({
             headerTitleAlign: "center",
@@ -27,7 +27,7 @@ const TenStack = createStackNavigator({
 })
 
 const BottomTab = createBottomTabNavigator({
-    MyInvestors: {
+    Investors: {
         screen: TenStack,
         navigationOptions: () => ({
         tabBarOptions: {

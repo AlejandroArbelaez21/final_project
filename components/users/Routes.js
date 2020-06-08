@@ -8,11 +8,12 @@ import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {createAppContainer} from 'react-navigation';
 
 const Stack = createStackNavigator({
-    Investments: {
+    Invest: {
         screen: Blogs,
         navigationOptions: () => ({
             headerTitleAlign: "center",
-            headerTitle:"Investments"
+            headerTitle:"Investments",
+            headerShown: false
             
         })
     },
@@ -20,46 +21,50 @@ const Stack = createStackNavigator({
         screen: Edit,
         navigationOptions: () => ({
             headerTitleAlign: "center", 
-            headerTitle:"Invest"
+            headerTitle:"Invest",
+            headerShown: false
         })
-    },
+    }
 })
 
 const BottomTab = createBottomTabNavigator({
-    Investments: {
+    Invest: {
         screen: Stack,
         navigationOptions: () => ({
         tabBarOptions: {
-            activeTintColor: '#F8F8F8', // active icon color
-            inactiveTintColor: '#586589',  // inactive icon color
+            activeTintColor: '#FF0000', // active icon color
+            inactiveTintColor: '#929292',  // inactive icon color
             style: {
-                backgroundColor: '#171F33' // TabBar background
+                backgroundColor: '#fff', // TabBar background
+                height: 50,
             }
         },
         tabBarIcon: ({tintColor}) => (
             <Icon
-                name="edit"
+                name="money"
                 color={tintColor}
-                size={24}
+                size={30}
             />
         )
     })
     },
-    MyInvestments: {
+    Investments: {
         screen: MyInvestments,
         navigationOptions: () => ({
             tabBarOptions: {
-                activeTintColor: '#F8F8F8', // active icon color
-                inactiveTintColor: '#586589',  // inactive icon color
+                activeTintColor: '#FF0000', // active icon color
+                inactiveTintColor: '#929292',  // inactive icon color
                 style: {
-                    backgroundColor: '#171F33' // TabBar background
+                    backgroundColor: '#fff', // TabBar background
+                    height: 50,
+
                 }
             },
             tabBarIcon: ({tintColor}) => (
                 <Icon
-                    name="close"
+                    name="line-chart"
                     color={tintColor}
-                    size={24}
+                    size={30}
                 />
             )
         })

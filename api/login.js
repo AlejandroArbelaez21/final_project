@@ -6,23 +6,22 @@ export default class Login extends Component {
     constructor(){
       super();
       this.state = {
-        storekeeperId: ''
+        access_token: '',
+        token_type: '',
+        expires_in: '',
+        refresh_token: '',
+        storekeeper_type: ''
     };
   }
     render(){
       return(
         <View style={styles.container}>
           <Button onPress={this._posData} title="Post debt"/>
-          <Text>{this.state.storekeeperId}</Text>
-          <Text>{this.state.userId}</Text>
-          <Text>{this.state.amount}</Text>
-          <Text>{this.state.comment}</Text>
-          <Text>{this.state.createdAt}</Text>
-          <Text>{this.state.updatedAt}</Text>
-          <Text>{this.state.reason}</Text>
-          <Text>{this.state.orderId}</Text>
-          <Text>{this.state.id}</Text>
-          <Text>{this.state.email}</Text>
+          <Text>{this.state.access_token}</Text>
+          <Text>{this.state.token_type}</Text>
+          <Text>{this.state.expires_in}</Text>
+          <Text>{this.state.refresh_token}</Text>
+          <Text>{this.state.storekeeper_type}</Text>
         </View>
       );
     }
@@ -38,14 +37,19 @@ export default class Login extends Component {
         body: JSON.stringify({
           client_secret: "W8dOKF1mdHaG9wBNyoOCEBgHajO66GEl81lTDu2P",
           client_id: "74HzD01JbhZ44iE1kh7Gt6dfNjEKrtWiz0FqTUDQ",
-          username: "test01@rappi.com",
-          password: "234567",
+          username: "tutor3@rappi.com",
+          password: "123456",
           scope:"all"
         })
       }).then((response) => response.json())
       .then((responseJson) => {
         console.log(responseJson)
-        this.setState({storekeeperId: JSON.stringify(responseJson.storekeeperId)})
+        this.setState({access_token: JSON.stringify(responseJson.access_token),
+                      token_type: JSON.stringify(responseJson.token_type),
+                      expires_in: JSON.stringify(responseJson.expires_in),
+                      refresh_token: JSON.stringify(responseJson.refresh_token),
+                      storekeeper_type: JSON.stringify(responseJson.storekeeper_type)})
+        
       })
     }
 }

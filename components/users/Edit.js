@@ -7,11 +7,15 @@ class Edit extends Component {
   state = {
     title: this.props.navigation.state.params.title,
     content: this.props.navigation.state.params.content,
-    key: this.props.navigation.state.params.key
+    key: this.props.navigation.state.params.key,
+    debt: this.props.navigation.state.params.debt,
+    invest: ''
   }
 
   submit = () => {
-    this.props.editBlog(this.state.title, this.state.content, this.state.key);
+    const result = parseInt(this.state.content) + parseInt(this.state.invest);
+    console.log(result)
+    this.props.editBlog(this.state.title, result, this.state.key);
     
     this.setState({
       title: "",
@@ -19,15 +23,27 @@ class Edit extends Component {
       key: ""
     })
 
-    this.props.navigation.navigate("Blogs")
+    this.props.navigation.navigate('Invest');
   }
+
+  onChanged (text) {
+    this.setState({
+        invest: text.replace(/[^0-9]/g, ''),
+    });
+}
+
 
   render() {
     return (
       <View style={styles.container}>
-        <Text>Edit</Text>
-        <TextInput style={{marginTop: 20, height: 40, borderColor: 'gray', borderWidth: 1}} placeholder="title" onChangeText={ title => this.setState({title})} value={this.state.title}/>
-        <TextInput style={{marginTop: 20, height: 90, borderColor: 'gray', borderWidth: 1}} placeholder="content" onChangeText={ content => this.setState({content})} value={this.state.content}/>
+        <Text>How much do you want to invest in</Text>
+        <Text>{this.state.title}</Text>
+        <TextInput keyboardType = 'number-pad'
+                   style={{marginTop: 20, height: 90, borderColor: 'gray', borderWidth: 1, padding: 5}}
+                   placeholder="min. $20.000"
+                   value={`${this.state.invest}`}
+                   onChangeText={(text)=> this.onChanged(text)}
+                   maxLength={6}/>
         <Button title="Submit" onPress={this.submit}/>
       </View>
     );

@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 class Post extends Component {
   state = {
     title: "",
-    content:""
+    debt: null
   }
   constructor(props) {
     super(props);
@@ -15,10 +15,10 @@ class Post extends Component {
   }
 
   submit = () => {
-    this.props.postBlogs(this.state.title, this.state.content)
+    this.props.postBlogs(this.state.title, 0, this.state.debt)
     this.setState({
       title: "",
-      content:""      
+      debt: null     
     })
     this.props.navigation.navigate('Router')
   }
@@ -28,7 +28,7 @@ class Post extends Component {
       <View style={styles.container}>
         <Text>Post</Text>
         <TextInput style={{marginTop: 20, height: 40, borderColor: 'gray', borderWidth: 1}} placeholder="title" onChangeText={ title => this.setState({title})} value={this.state.title}/>
-        <TextInput style={{marginTop: 20, height: 90, borderColor: 'gray', borderWidth: 1}} placeholder="content" onChangeText={ content => this.setState({content})} value={this.state.content}/>
+        <TextInput style={{marginTop: 20, height: 90, borderColor: 'gray', borderWidth: 1}} placeholder="content" onChangeText={ debt => this.setState({debt})} value={this.state.debt}/>
         <Button title="Submit" onPress={this.submit}/>
       </View>
     );
