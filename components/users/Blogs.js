@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Button, FlatList, TouchableHighlight, Image } from 'react-native';
+import { View, Text, StyleSheet, Button, FlatList, TouchableHighlight, Image, ImageBackground} from 'react-native';
 import {getBlogs, deleteBlog} from '../../actions';
 import {connect} from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -10,6 +10,10 @@ class Blogs extends Component {
 
   componentDidMount(){
     this.props.getBlogs()
+  }
+
+  res = (a, b) => {
+    return() => parseInt(a) - parseInt(b)
   }
 
   render() {
@@ -25,22 +29,25 @@ class Blogs extends Component {
             showsVerticalScrollIndicator={false}
             renderItem={({item}) => {
               return (
-                <View style={{flex: 1,elevation:8, marginBottom:15, marginTop:35, borderRadius:15, backgroundColor: '#fff', borderWidth: 2, borderColor:'#eaeaea',padding: 10, width: '100%', height: '90%'}}>
-                  <View style={{flex: 1}}>
-                    <Text style={{fontSize:28, marginBottom: 10, fontWeight:'bold', lineHeight:30, color:'black'}}>{item.title}</Text>
-                    <Text style={{fontSize:20, lineHeight:30, color:'black'}}>Goal: {item.debt}</Text>
-                    <Text style={{fontSize:20, lineHeight:30, color:'black'}}>Current amount: {item.content}</Text>
-                  </View>
-                  <View style={{flex: 22, justifyContent:'flex-end'}}>
-                    <Image style={{alignSelf: 'center', width: '105%', height: '80%', marginBottom: 25}} source={require('../../src/photos/photo1.jpeg')}></Image>
-                  </View>
-                  <View style={{flex:0.5, flexDirection:'row', justifyContent:'center', alignItems: 'center', marginBottom: 15}}>
-                    <TouchableHighlight onPress={() => this.props.navigation.navigate('Edit', {...item})}>
-                      <View>
-                        <Icon color="#ff0000" name="check-circle-o" size={50}/>
-                      </View>
-                    </TouchableHighlight>
-                  </View>
+                <View style={{flex: 0.98, borderRadius:15, marginTop: 45, borderWidth: 2, borderColor:'#eaeaea'}}>
+                  <ImageBackground 
+                  source={require('../../src/photos/photo1.jpeg')}
+                  style={{flex: 0.97, elevation:8, marginTop:15, width: '100%', justifyContent:'center'}}>
+                  <TouchableHighlight style={{padding:10, flex:1, justifyContent:'flex-end', marginBottom: 20}} onPress={() => this.props.navigation.navigate('Edit', {...item})}>
+                    <View style={{padding:1, justifyContent:'flex-end'}}>
+                      <Text style={{textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: -1, height: 1},
+                      textShadowRadius: 10, fontSize:35, marginBottom: 10, fontWeight:'bold', color:'white'}}>{item.title}</Text>
+                      <Text style={{textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: -1, height: 1},
+                      textShadowRadius: 10, fontSize:20, marginBottom: 10, fontWeight:'bold', color:'white'}}>{item.description}</Text>
+                      <Text style={{textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: -1, height: 1},
+                      textShadowRadius: 10, fontSize:24, lineHeight:30, color:'white', fontWeight:'bold'}}>Goal: ${item.debt}</Text>
+                      <Text style={{textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: -1, height: 1},
+                      textShadowRadius: 10, fontSize:24, lineHeight:30, color:'white', fontWeight:'bold'}}>Current amount: ${item.content}</Text>
+                      <Text style={{textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: -1, height: 1},
+                      textShadowRadius: 10, fontSize:24, lineHeight:30, color:'white', fontWeight:'bold'}}>Only ${parseInt(item.debt) - parseInt(item.content)} more!</Text>
+                    </View>
+                  </TouchableHighlight>
+                  </ImageBackground>
                 </View>
               )
             }}/>

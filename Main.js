@@ -24,10 +24,10 @@ class Main extends Component {
           <Text style={styles.text}>You are:</Text>
         </View>  
         <View style={styles.button}>
-          <Button color="#ff0000" title="Rappi User" onPress={this.user}/>
+          <Button color='#fc6552' title="Rappi User" onPress={this.user}/>
         </View>
         <View style={styles.button}>
-          <Button color="#ff0000" title="Rappi Tendero" onPress={this.tendero}/>
+          <Button color='#fc6552' title="Rappi Tendero" onPress={this.tendero}/>
         </View>
       </View>
     );

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
+import { Alert, View, Text, StyleSheet, TextInput, Button } from 'react-native';
 import {editBlog} from '../../actions';
 import {connect} from 'react-redux';
 
@@ -8,22 +8,41 @@ class Edit extends Component {
     title: this.props.navigation.state.params.title,
     content: this.props.navigation.state.params.content,
     key: this.props.navigation.state.params.key,
+    description: this.props.navigation.state.params.description,
     debt: this.props.navigation.state.params.debt,
-    invest: ''
+    invest: '',
+    subkey: ''
+  }
+
+  invested(title, content){
+    Alert.alert("You have invested $" + content + ' in ' + title + '!')
+  }
+
+  counter(){
+    this.setState({
+      subkey: this.props.navigation.state.params.key
+    })
+    console.log(this.state.subkey)
   }
 
   submit = () => {
+    if(parseInt(this.state.invest) < 20000) {
+       Alert.alert('Your invest should be $20.000 or higher');
+    } else {
+    this.counter();
+    this.invested(this.state.title, this.state.invest);
     const result = parseInt(this.state.content) + parseInt(this.state.invest);
-    console.log(result)
-    this.props.editBlog(this.state.title, result, this.state.key);
+    this.props.editBlog(this.state.title, result, this.state.key, this.state.description);
     
     this.setState({
       title: "",
       content: "",
-      key: ""
+      key: "",
+      description: ""
     })
 
     this.props.navigation.navigate('Invest');
+  }
   }
 
   onChanged (text) {
@@ -36,15 +55,18 @@ class Edit extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>How much do you want to invest in</Text>
         <Text>{this.state.title}</Text>
+        <Text>{this.state.description}</Text>
+        <Text>${this.state.debt}</Text>
+        <Text>How much do you want to invest?</Text>
         <TextInput keyboardType = 'number-pad'
-                   style={{marginTop: 20, height: 90, borderColor: 'gray', borderWidth: 1, padding: 5}}
+                   style={{marginBottom: 20, marginTop: 20, height: 40, borderColor: 'gray', borderWidth: 1, padding: 5}}
                    placeholder="min. $20.000"
                    value={`${this.state.invest}`}
                    onChangeText={(text)=> this.onChanged(text)}
                    maxLength={6}/>
-        <Button title="Submit" onPress={this.submit}/>
+        <Button title="Submit"
+        onPress={this.submit}/>
       </View>
     );
   }

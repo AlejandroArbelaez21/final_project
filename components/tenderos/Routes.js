@@ -31,7 +31,7 @@ const BottomTab = createBottomTabNavigator({
         screen: TenStack,
         navigationOptions: () => ({
         tabBarOptions: {
-            activeTintColor: '#F8F8F8', // active icon color
+            activeTintColor: '#fc6552', // active icon color
             inactiveTintColor: '#586589',  // inactive icon color
             style: {
                 backgroundColor: '#171F33' // TabBar background
@@ -50,7 +50,7 @@ const BottomTab = createBottomTabNavigator({
         screen: Profile,
         navigationOptions: () => ({
             tabBarOptions: {
-                activeTintColor: '#F8F8F8', // active icon color
+                activeTintColor: '#fc6552', // active icon color
                 inactiveTintColor: '#586589',  // inactive icon color
                 style: {
                     backgroundColor: '#171F33' // TabBar background

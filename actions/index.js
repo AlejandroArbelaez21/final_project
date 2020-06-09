@@ -21,9 +21,9 @@ export function getBlogs(){
     }
 }
 
-export function postBlogs(title, content, debt){
+export function postBlogs(title, content, debt, description){
     return(dispatch) => {
-        firebase.database().ref('/tendero').push({title, content, debt})
+        firebase.database().ref('/tendero').push({title, content, debt, description})
     }
 }
 
@@ -33,8 +33,8 @@ export function deleteBlog(key){
   }
 }
 
-export function editBlog(title, content, key){
+export function editBlog(title, content, key, description){
   return(dispatch) => {
-      firebase.database().ref(`/tendero`).child(key).update({title, content})
+      firebase.database().ref(`/tendero`).child(key).update({title, content, key, description})
   }
 }

@@ -32,7 +32,7 @@ const BottomTab = createBottomTabNavigator({
         screen: Stack,
         navigationOptions: () => ({
         tabBarOptions: {
-            activeTintColor: '#FF0000', // active icon color
+            activeTintColor: '#fc6552', // active icon color
             inactiveTintColor: '#929292',  // inactive icon color
             style: {
                 backgroundColor: '#fff', // TabBar background
@@ -52,7 +52,7 @@ const BottomTab = createBottomTabNavigator({
         screen: MyInvestments,
         navigationOptions: () => ({
             tabBarOptions: {
-                activeTintColor: '#FF0000', // active icon color
+                activeTintColor: '#fc6552', // active icon color
                 inactiveTintColor: '#929292',  // inactive icon color
                 style: {
                     backgroundColor: '#fff', // TabBar background
