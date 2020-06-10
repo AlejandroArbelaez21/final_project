@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 13416,
-  "expoServerNgrokUrl": "https://zy-79c.anonymous.final-project.exp.direct",
-  "packagerNgrokUrl": "https://packager.zy-79c.anonymous.final-project.exp.direct",
-  "ngrokPid": 13540,
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
   "webpackServerPort": null
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import Blogs from './Blogs';
 import MyInvestments from './MyInvestments';
 import Edit from './Edit';
+import Info from './Info';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
@@ -13,8 +14,7 @@ const Stack = createStackNavigator({
         navigationOptions: () => ({
             headerTitleAlign: "center",
             headerTitle:"Investments",
-            headerShown: false
-            
+            headerShown: false   
         })
     },
     Edit: {
@@ -36,12 +36,12 @@ const BottomTab = createBottomTabNavigator({
             inactiveTintColor: '#929292',  // inactive icon color
             style: {
                 backgroundColor: '#fff', // TabBar background
-                height: 50,
+                height: 50
             }
         },
         tabBarIcon: ({tintColor}) => (
             <Icon
-                name="money"
+                name="handshake-o"
                 color={tintColor}
                 size={30}
             />
@@ -56,13 +56,32 @@ const BottomTab = createBottomTabNavigator({
                 inactiveTintColor: '#929292',  // inactive icon color
                 style: {
                     backgroundColor: '#fff', // TabBar background
-                    height: 50,
-
+                    height: 50
                 }
             },
             tabBarIcon: ({tintColor}) => (
                 <Icon
-                    name="line-chart"
+                    name="usd"
+                    color={tintColor}
+                    size={30}
+                />
+            )
+        })
+    },
+    Info: {
+        screen: Info,
+        navigationOptions: () => ({
+            tabBarOptions: {
+                activeTintColor: '#fc6552', // active icon color
+                inactiveTintColor: '#929292',  // inactive icon color
+                style: {
+                    backgroundColor: '#fff', // TabBar background
+                    height: 50
+                }
+            },
+            tabBarIcon: ({tintColor}) => (
+                <Icon
+                    name="info-circle"
                     color={tintColor}
                     size={30}
                 />

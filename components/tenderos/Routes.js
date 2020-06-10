@@ -3,6 +3,7 @@ import Post from './Post';
 import Profile from './Profile';
 import Thanks from './Thanks';
 import MyInvestors from './MyInvestors';
+import Info from './Info';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
@@ -13,7 +14,8 @@ const TenStack = createStackNavigator({
         screen: MyInvestors,
         navigationOptions: () => ({
             headerTitleAlign: "center",
-            headerTitle:"Investments"
+            headerTitle:"Investments",
+            headerShown: false
             
         })
     },
@@ -21,7 +23,8 @@ const TenStack = createStackNavigator({
         screen: Thanks,
         navigationOptions: () => ({
             headerTitleAlign: "center", 
-            headerTitle:"Invest"
+            headerTitle:"Invest",
+            headerShown: false
         })
     },
 })
@@ -32,14 +35,15 @@ const BottomTab = createBottomTabNavigator({
         navigationOptions: () => ({
         tabBarOptions: {
             activeTintColor: '#fc6552', // active icon color
-            inactiveTintColor: '#586589',  // inactive icon color
+            inactiveTintColor: '#929292',  // inactive icon color
             style: {
-                backgroundColor: '#171F33' // TabBar background
+                backgroundColor: '#fff', // TabBar background
+                height: 50
             }
         },
         tabBarIcon: ({tintColor}) => (
             <Icon
-                name="rocket"
+                name="handshake-o"
                 color={tintColor}
                 size={24}
             />
@@ -51,14 +55,33 @@ const BottomTab = createBottomTabNavigator({
         navigationOptions: () => ({
             tabBarOptions: {
                 activeTintColor: '#fc6552', // active icon color
-                inactiveTintColor: '#586589',  // inactive icon color
+                inactiveTintColor: '#929292',  // inactive icon color
                 style: {
-                    backgroundColor: '#171F33' // TabBar background
+                    backgroundColor: '#fff' // TabBar background
                 }
             },
             tabBarIcon: ({tintColor}) => (
                 <Icon
-                    name="rocket"
+                    name="user-circle"
+                    color={tintColor}
+                    size={24}
+                />
+            )
+        })
+    },
+    Info: {
+        screen: Info,
+        navigationOptions: () => ({
+            tabBarOptions: {
+                activeTintColor: '#fc6552', // active icon color
+                inactiveTintColor: '#929292',  // inactive icon color
+                style: {
+                    backgroundColor: '#fff' // TabBar background
+                }
+            },
+            tabBarIcon: ({tintColor}) => (
+                <Icon
+                    name="info-circle"
                     color={tintColor}
                     size={24}
                 />

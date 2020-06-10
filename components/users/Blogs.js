@@ -29,21 +29,21 @@ class Blogs extends Component {
             showsVerticalScrollIndicator={false}
             renderItem={({item}) => {
               return (
-                <View style={{flex: 0.98, borderRadius:15, marginTop: 45, borderWidth: 2, borderColor:'#eaeaea'}}>
+                <View style={{flex: 0.98, borderRadius:15, marginTop: 45, borderWidth: 2, backgroundColor:'#fc6552', borderColor:'#fc6552'}}>
                   <ImageBackground 
                   source={require('../../src/photos/photo1.jpeg')}
-                  style={{flex: 0.97, elevation:8, marginTop:15, width: '100%', justifyContent:'center'}}>
+                  style={{flex: 0.97, elevation:9, marginTop:15, width: '100%', justifyContent:'center'}}>
                   <TouchableHighlight style={{padding:10, flex:1, justifyContent:'flex-end', marginBottom: 20}} onPress={() => this.props.navigation.navigate('Edit', {...item})}>
                     <View style={{padding:1, justifyContent:'flex-end'}}>
-                      <Text style={{textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: -1, height: 1},
+                      <Text style={{textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: 1, height: 1},
                       textShadowRadius: 10, fontSize:35, marginBottom: 10, fontWeight:'bold', color:'white'}}>{item.title}</Text>
-                      <Text style={{textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: -1, height: 1},
+                      <Text style={{textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: 1, height: 1},
                       textShadowRadius: 10, fontSize:20, marginBottom: 10, fontWeight:'bold', color:'white'}}>{item.description}</Text>
-                      <Text style={{textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: -1, height: 1},
+                      <Text style={{textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: 1, height: 1},
                       textShadowRadius: 10, fontSize:24, lineHeight:30, color:'white', fontWeight:'bold'}}>Goal: ${item.debt}</Text>
-                      <Text style={{textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: -1, height: 1},
+                      <Text style={{textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: 1, height: 1},
                       textShadowRadius: 10, fontSize:24, lineHeight:30, color:'white', fontWeight:'bold'}}>Current amount: ${item.content}</Text>
-                      <Text style={{textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: -1, height: 1},
+                      <Text style={{textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: 1, height: 1},
                       textShadowRadius: 10, fontSize:24, lineHeight:30, color:'white', fontWeight:'bold'}}>Only ${parseInt(item.debt) - parseInt(item.content)} more!</Text>
                     </View>
                   </TouchableHighlight>

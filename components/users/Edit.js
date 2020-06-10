@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Alert, View, Text, StyleSheet, TextInput, Button } from 'react-native';
 import {editBlog} from '../../actions';
 import {connect} from 'react-redux';
+import GradientButton from 'react-native-gradient-buttons';
 
 class Edit extends Component {
   state = {
@@ -65,8 +66,8 @@ class Edit extends Component {
                    value={`${this.state.invest}`}
                    onChangeText={(text)=> this.onChanged(text)}
                    maxLength={6}/>
-        <Button title="Submit"
-        onPress={this.submit}/>
+        <GradientButton GradientButton style={{alignSelf:'center', padding: 5, width:'103%'}} gradientBegin='#fc6552' gradientEnd="#fe2725" text="Invest" textStyle={{ fontWeight: 'bold' }}
+        onPressAction={this.submit}/>
       </View>
     );
   }

@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
+import { View, StyleSheet, TextInput } from 'react-native';
 import {postBlogs} from '../../actions';
 import {connect} from 'react-redux';
+import GradientButton from 'react-native-gradient-buttons';
+import Popup from './Popup';
+
 
 class Post extends Component {
   state = {
@@ -22,17 +25,21 @@ class Post extends Component {
       debt: null,
       description: null
     })
-    this.props.navigation.navigate('Router')
+    this.props.navigation.navigate('Motos')
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Text>Registration</Text>
-        <TextInput style={{padding: 10, marginTop: 20, height: 40, borderColor: 'gray', borderWidth: 1}} placeholder="Full name" onChangeText={ title => this.setState({title})} value={this.state.title}/>
+        <Popup/>
+        <TextInput style={{padding: 10, height: 40, borderColor: 'gray', borderWidth: 1}} placeholder="Full name" onChangeText={ title => this.setState({title})} value={this.state.title}/>
         <TextInput style={{padding: 10, marginTop: 20, height: 90, borderColor: 'gray', borderWidth: 1}} placeholder="description" onChangeText={ description => this.setState({description})} value={this.state.description}/>
-        <TextInput style={{padding: 10, marginBottom: 20, marginTop: 20, height: 40, borderColor: 'gray', borderWidth: 1}} placeholder="Motorcycle price" onChangeText={ debt => this.setState({debt})} value={this.state.debt}/>
-        <Button title="Submit" onPress={this.submit}/>
+        <TextInput style={{padding: 10, marginBottom: 20, marginTop: 20, height: 40, borderColor: 'gray', borderWidth: 1}}
+                   keyboardType = 'number-pad'
+                   placeholder="Motorcycle price"
+                   onChangeText={ debt => this.setState({debt})}
+                   value={this.state.debt}/>
+        <GradientButton style={{alignSelf:'center', padding: 5, width:'103%'}} gradientBegin='#fc6552' gradientEnd="#fe2725" text="Pick your moto" textStyle={{ fontWeight: 'bold' }} onPressAction={this.submit}/>
       </View>
     );
   }
@@ -42,7 +49,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-
         padding: 20,
         backgroundColor: '#ffffff'
     }

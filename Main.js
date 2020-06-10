@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
+import GradientButton from 'react-native-gradient-buttons';
 
 
 class Main extends Component {
@@ -24,10 +25,10 @@ class Main extends Component {
           <Text style={styles.text}>You are:</Text>
         </View>  
         <View style={styles.button}>
-          <Button color='#fc6552' title="Rappi User" onPress={this.user}/>
+          <GradientButton style={{alignSelf:'center', padding: 5, width:'103%'}} gradientBegin='#fc6552' gradientEnd="#fe2725" text="Rappi User" textStyle={{ fontWeight: 'bold' }} onPressAction={this.user}/>
         </View>
         <View style={styles.button}>
-          <Button color='#fc6552' title="Rappi Tendero" onPress={this.tendero}/>
+          <GradientButton style={{alignSelf:'center', padding: 5, width:'103%'}} gradientBegin='#fc6552' gradientEnd="#fe2725" text="Rappi Tendero" textStyle={{ fontWeight: 'bold' }} onPressAction={this.tendero}/>
         </View>
       </View>
     );
@@ -44,7 +45,8 @@ const styles = StyleSheet.create({
         color: '#fff',
         padding: 5,
         width: "65%",
-        height: 50
+        height: 50,
+        marginTop: 40
     },
     text: {
         fontWeight: 'bold',
