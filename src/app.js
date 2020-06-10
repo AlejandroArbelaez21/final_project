@@ -1,9 +1,12 @@
-import React, { Component } from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import Main from '../Main';
 import User from '../User';
-import Tendero from '../Tendero';
+import Courier from '../Tendero';
+import LoginScreenUser from '../app/screens/LoginScreenUser';
+import LoginScreenCourier from '../app/screens/LoginScreenCourier';
+import SplashScreenUser from '../components/users/SplashScreen';
+import SplashScreenCourier from '../components/tenderos/SplashScreen';
 
 const LoginNavigator = createStackNavigator({
   Main : {
@@ -14,18 +17,44 @@ const LoginNavigator = createStackNavigator({
       headerShown: false
     }
   },
+  LoginUser : {
+    screen : LoginScreenUser,
+    navigationOptions : {
+      title : 'Go Back',
+      headerShown: true
+    }
+  },
+  LoginCourier : {
+    screen : LoginScreenCourier,
+    navigationOptions : {
+      title : 'Go Back',
+      headerShown: true,
+    }
+  },
+  SplashUser:{
+    screen: SplashScreenUser,
+    navigationOptions:{
+        headerShown: false,
+    }
+  },
+  SplashCourier:{
+    screen: SplashScreenCourier,
+    navigationOptions:{
+        headerShown: false,
+    }
+  },
   User : {
     screen : User,
     navigationOptions : {
-      title : 'Investor',
-      headerShown: false
+      title : 'Login',
+      headerShown: false,
     }
   },
-  Tendero : {
-    screen : Tendero,
+  Courier : {
+    screen : Courier,
     navigationOptions : {
-      title : 'Rappi Tendero',
-      headerShown: false
+      title : 'Login',
+      headerShown: false,
     }
   }
 });

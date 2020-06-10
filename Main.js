@@ -10,12 +10,12 @@ class Main extends Component {
     };
   }
 
-  user = () => {
-    this.props.navigation.navigate('User')
+  LoginUser = () => {
+    this.props.navigation.navigate('LoginUser')
   }
 
-  tendero = () => {
-    this.props.navigation.navigate('Tendero')
+  LoginCourier = () => {
+    this.props.navigation.navigate('LoginCourier')
   }
 
   render() {
@@ -25,10 +25,10 @@ class Main extends Component {
           <Text style={styles.text}>You are:</Text>
         </View>  
         <View style={styles.button}>
-          <GradientButton style={{alignSelf:'center', padding: 5, width:'103%'}} gradientBegin='#fc6552' gradientEnd="#fe2725" text="Rappi User" textStyle={{ fontWeight: 'bold' }} onPressAction={this.user}/>
+          <GradientButton style={{alignSelf:'center', padding: 5, width:'103%'}} gradientBegin='#fc6552' gradientEnd="#fe2725" text="Rappi User" textStyle={{ fontWeight: 'bold' }} onPressAction={this.LoginUser}/>
         </View>
         <View style={styles.button}>
-          <GradientButton style={{alignSelf:'center', padding: 5, width:'103%'}} gradientBegin='#fc6552' gradientEnd="#fe2725" text="Rappi Tendero" textStyle={{ fontWeight: 'bold' }} onPressAction={this.tendero}/>
+          <GradientButton style={{alignSelf:'center', padding: 5, width:'103%'}} gradientBegin='#fc6552' gradientEnd="#fe2725" text="Rappi Courier" textStyle={{ fontWeight: 'bold' }} onPressAction={this.LoginCourier}/>
         </View>
       </View>
     );

@@ -31,7 +31,7 @@ class Post extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Popup/>
+          <Popup/>
         <TextInput style={{padding: 10, height: 40, borderColor: 'gray', borderWidth: 1}} placeholder="Full name" onChangeText={ title => this.setState({title})} value={this.state.title}/>
         <TextInput style={{padding: 10, marginTop: 20, height: 90, borderColor: 'gray', borderWidth: 1}} placeholder="description" onChangeText={ description => this.setState({description})} value={this.state.description}/>
         <TextInput style={{padding: 10, marginBottom: 20, marginTop: 20, height: 40, borderColor: 'gray', borderWidth: 1}}

@@ -10,6 +10,7 @@ class Popup extends Component {
       show: true
     }
   }
+  
   render() {
     return (
 
