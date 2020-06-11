@@ -1,4 +1,5 @@
-import React, {Component, useState} from 'react';
+import React, {useState} from 'react';
+import GradientButton from 'react-native-gradient-buttons';
 import { 
    Text,
    View,
@@ -6,42 +7,56 @@ import {
    TouchableOpacity,
    StatusBar,
    Image,
-} from 'react-native'
-import { loginStyles} from '../styles/styles'
-import MyTextInput from '../components/MyTextInput'
-import color from '../styles/colors'
+   StyleSheet
+} from 'react-native';
+import { loginStyles} from '../styles/styles';
+import MyTextInput from '../components/MyTextInput';
 
 export default function LoginScreen({navigation}) {
    const [hidePassword, setHidePassword] = useState(false)
    
    return(
-      <View style={[loginStyles.container, {marginBottom: 50}]}>
-         <StatusBar backgroundColor={color.BLUE} translucent={true}/>
-         <View style={[loginStyles.logo]}>
-            <Image source={require('../recursos/images/logo.png')}
-            style={{ height:230, width:230}}/>
+      <View style={[loginStyles.container, { backgroundColor: '#fff'}]}>
+         <StatusBar style={{backgroundColor: 'white'}} translucent={true}/>
+         <View >
+            <Image style={styles.image} source={require('../recursos/images/rappilogo.png')}/>
          </View>
-         <MyTextInput keyboardType='email-address' placeholder='E-mail' image='user'
-         style={{ marginBottom: -150 }}/>
-         <MyTextInput placeholder='Contraseña' image='lock'
-         bolGone={true} secureTextEntry={hidePassword}
-         onPress={()=> setHidePassword(!hidePassword)}
-         style={{ marginBottom: 150 }}/>
-         <View style={loginStyles.btnMain}>
-            <TouchableOpacity>
-               <Text style={ loginStyles.btntxt} onPress={()=> navigation.navigate('SplashCourier')}>Iniciar Sesión</Text>
-            </TouchableOpacity>
+         <View style={{marginTop: 25}}>
+            <MyTextInput keyboardType='email-address' placeholder='E-mail' image='user'/>
+            <MyTextInput placeholder='Password' image='lock'
+            bolGone={true} secureTextEntry={hidePassword}
+            onPress={()=> setHidePassword(!hidePassword)}/>
          </View>
-         <View style={loginStyles.btnTransparent}>
-            <TouchableOpacity onPress={() => Linking.openURL('https://soyrappi.com/?utm_source=appuser&utm_medium=applk&utm_campaign=rt&_ga=2.112292484.1493502386.1591311568-2132334114.1590786520&_gac=1.16066178.1591311568.EAIaIQobChMIsYW4xKHp6QIVBeXICh1esw-gEAAYASAAEgIo7PD_BwE')}>
-               <Text style={ [loginStyles.btntxt, { color: color.ORANGE}]}>Regristrarse</Text>
-            </TouchableOpacity>
+         <View style={styles.button}>
+            <GradientButton style={{alignSelf:'center', padding: 5, width:'103%'}} gradientBegin='#ff9259' gradientEnd="#ff2426" text="Log In" textStyle={{ fontWeight: 'bold', color: '#fff' }} onPressAction={()=> navigation.navigate('SplashCourier')}/>
          </View>
-         <View>
-            <TouchableOpacity>
-               <Text style={ [loginStyles.txtTransparent, { textDecorationLine: 'underline'}]}>Olvide mi contraseña</Text>
+         <View style={styles.button} >
+            <GradientButton style={{alignSelf:'center', padding: 5, width:'103%'}} gradientBegin='#fff' gradientEnd='#ff9259' text="Sign In" textStyle={{ fontWeight: 'bold', color: '#000000' }} onPressAction={() => Linking.openURL('https://soyrappi.com/?utm_source=appuser&utm_medium=applk&utm_campaign=rt&_ga=2.112292484.1493502386.1591311568-2132334114.1590786520&_gac=1.16066178.1591311568.EAIaIQobChMIsYW4xKHp6QIVBeXICh1esw-gEAAYASAAEgIo7PD_BwE')}/>
+         </View>
+         <View style={[styles.button, { marginBottom: 50}]}>
+            <TouchableOpacity style={{alignSelf:'center', marginTop:40, backgroundColor: '#fff'}}>
+               <Text style={ [loginStyles.txtTransparent, { textDecorationLine: 'underline', backgroundColor: '#fff' }]}>Forgot password</Text>
             </TouchableOpacity>
          </View>
       </View>
         )
 }
+
+const styles = StyleSheet.create({
+   button: {       
+       padding: 5,
+       width: "65%",
+       height: 50,
+       marginTop: 20     
+   },
+   image: {
+      width: 150,
+      height: 150,
+      borderRadius: 30,
+      overflow: "hidden",
+      borderWidth: 3,
+      borderColor: "#ff2426",
+      marginBottom:20,
+      marginTop: 40
+  }
+});

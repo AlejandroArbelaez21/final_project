@@ -19,8 +19,11 @@ export default class Rol extends Component {
       .then((responseJson) => {
         console.log(responseJson)
         this.setState({userType: JSON.stringify(responseJson.user_type)})
-        
       })
+      .catch(function(error) {
+        console.log('There has been a problem with your fetch operation: ' + error.message);
+          throw error;
+        }); 
     }
 
     render(){

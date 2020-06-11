@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import GradientButton from 'react-native-gradient-buttons';
-
 
 class Main extends Component {
   constructor(props) {
@@ -24,11 +23,11 @@ class Main extends Component {
         <View>
           <Text style={styles.text}>You are:</Text>
         </View>  
-        <View style={styles.button}>
-          <GradientButton style={{alignSelf:'center', padding: 5, width:'103%'}} gradientBegin='#fc6552' gradientEnd="#fe2725" text="Rappi User" textStyle={{ fontWeight: 'bold' }} onPressAction={this.LoginUser}/>
+        <View style={styles.button} >
+          <GradientButton style={{alignSelf:'center', padding: 5, width:'103%'}} gradientBegin='#ff9259' gradientEnd="#ff2426" text="Rappi User" textStyle={{ fontWeight: 'bold' }} onPressAction={this.LoginUser}/>
         </View>
         <View style={styles.button}>
-          <GradientButton style={{alignSelf:'center', padding: 5, width:'103%'}} gradientBegin='#fc6552' gradientEnd="#fe2725" text="Rappi Courier" textStyle={{ fontWeight: 'bold' }} onPressAction={this.LoginCourier}/>
+          <GradientButton style={{alignSelf:'center', padding: 5, width:'103%'}} gradientBegin='#ff9259' gradientEnd="#ff2426" text="Rappi Courier" textStyle={{ fontWeight: 'bold' }} onPressAction={this.LoginCourier}/>
         </View>
       </View>
     );
@@ -47,6 +46,7 @@ const styles = StyleSheet.create({
         width: "65%",
         height: 50,
         marginTop: 40
+        
     },
     text: {
         fontWeight: 'bold',

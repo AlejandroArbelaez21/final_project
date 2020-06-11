@@ -66,7 +66,7 @@ class Edit extends Component {
                    value={`${this.state.invest}`}
                    onChangeText={(text)=> this.onChanged(text)}
                    maxLength={6}/>
-        <GradientButton GradientButton style={{alignSelf:'center', padding: 5, width:'103%'}} gradientBegin='#fc6552' gradientEnd="#fe2725" text="Invest" textStyle={{ fontWeight: 'bold' }}
+        <GradientButton GradientButton style={{alignSelf:'center', padding: 5, width:'103%'}} gradientBegin='#ff9259' gradientEnd="#ff2426" text="Invest" textStyle={{ fontWeight: 'bold' }}
         onPressAction={this.submit}/>
       </View>
     );

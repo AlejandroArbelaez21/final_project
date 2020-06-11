@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Button, FlatList, TouchableHighlight, Image, ImageBackground} from 'react-native';
+import { View, Text, StyleSheet, TouchableHighlight, ImageBackground, Image } from 'react-native';
 import {getBlogs, deleteBlog} from '../../actions';
 import {connect} from 'react-redux';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import _ from 'lodash';
 import Carousel from 'react-native-snap-carousel';
+import NumberFormat from 'react-number-format';
 
 class Blogs extends Component {
 
@@ -16,11 +16,15 @@ class Blogs extends Component {
     return() => parseInt(a) - parseInt(b)
   }
 
+  currencyFormat = (num) => {
+    return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+ }
+
   render() {
     return (
       <View style={styles.container}>
           {
-            this.props.loadingReducer ? <Text>Loading.. Please wait</Text> :
+            this.props.loadingReducer ? <Image style={{width: 100, height:100}} source={require('../../app/recursos/images/load.gif')}/> :
             <Carousel style={{width: '100%'}}
             sliderWidth={340}
             itemWidth={340}
@@ -29,7 +33,7 @@ class Blogs extends Component {
             showsVerticalScrollIndicator={false}
             renderItem={({item}) => {
               return (
-                <View style={{flex: 0.98, borderRadius:15, marginTop: 45, borderWidth: 2, backgroundColor:'#fc6552', borderColor:'#fc6552'}}>
+                <View style={{flex: 0.98, borderRadius:15, marginTop: 45, borderWidth: 2, backgroundColor:'#ff2426', borderColor:'#ff2426'}}>
                   <ImageBackground 
                   source={require('../../src/photos/photo1.jpeg')}
                   style={{flex: 0.97, elevation:9, marginTop:15, width: '100%', justifyContent:'center'}}>
@@ -40,11 +44,11 @@ class Blogs extends Component {
                       <Text style={{textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: 1, height: 1},
                       textShadowRadius: 10, fontSize:20, marginBottom: 10, fontWeight:'bold', color:'white'}}>{item.description}</Text>
                       <Text style={{textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: 1, height: 1},
-                      textShadowRadius: 10, fontSize:24, lineHeight:30, color:'white', fontWeight:'bold'}}>Goal: ${item.debt}</Text>
+                      textShadowRadius: 10, fontSize:24, lineHeight:30, color:'white', fontWeight:'bold'}}>Goal: {this.currencyFormat(parseInt(item.debt))}</Text>
                       <Text style={{textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: 1, height: 1},
-                      textShadowRadius: 10, fontSize:24, lineHeight:30, color:'white', fontWeight:'bold'}}>Current amount: ${item.content}</Text>
+                      textShadowRadius: 10, fontSize:24, lineHeight:30, color:'white', fontWeight:'bold'}}>Current amount: {this.currencyFormat(parseInt(item.content))}</Text>
                       <Text style={{textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: 1, height: 1},
-                      textShadowRadius: 10, fontSize:24, lineHeight:30, color:'white', fontWeight:'bold'}}>Only ${parseInt(item.debt) - parseInt(item.content)} more!</Text>
+                      textShadowRadius: 10, fontSize:24, lineHeight:30, color:'white', fontWeight:'bold'}}>Only {this.currencyFormat(parseInt(item.debt) - parseInt(item.content))} more!</Text>
                     </View>
                   </TouchableHighlight>
                   </ImageBackground>

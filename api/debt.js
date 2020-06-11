@@ -68,8 +68,11 @@ export default class Debt extends Component {
                        orderId: JSON.stringify(responseJson[0].orderId),
                        reason: JSON.stringify(responseJson[0].reason),
                        updatedAt: JSON.stringify(responseJson[0].updatedAt)})
-        
       })
+      .catch(function(error) {
+        console.log('There has been a problem with your fetch operation: ' + error.message);
+          throw error;
+        }); 
     }
 }
 

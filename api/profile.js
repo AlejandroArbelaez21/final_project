@@ -35,6 +35,10 @@ export default class Profile extends Component {
         console.log(resJson)
         this.setState({data: JSON.stringify(resJson)})
       })
+      .catch(function(error) {
+        console.log('There has been a problem with your fetch operation: ' + error.message);
+          throw error;
+        }); 
     }
 }
 

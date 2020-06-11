@@ -7,13 +7,15 @@ export default function MyTextInput(props){
 
     return (
       <Input
-        style={{alignItems: 'center'}}
+      style={{flex:1, alignItems: 'center', justifyContent:'flex-end'}}
+      
+      containerStyle={{alignItems: 'center', width: '90%', justifyContent:'flex-end', borderColor:color.LIGHTPRIMARYCOLOR}}
         inputStyle={{ fontSize:18,paddingVertical: 10,
             paddingHorizontal:8, marginTop:12,
-            color: color.PRIMARYCOLOR}}
+            color: color.LIGHTPRIMARYCOLOR}}
         placeholderTextColor={color.LIGHTPRIMARYCOLOR}
         placeholder={props.placeholder}
-        leftIconContainerStyle={{ marginLeft:0 }}
+        leftIconContainerStyle={{ marginLeft:15, marginTop:15 }}
         leftIcon={<Icon size={24} color={color.ORANGE} 
         type={'font-awesome'} name={props.image}/>}
         rightIcon={props.bolGone?
@@ -41,7 +43,8 @@ const styles = StyleSheet.create({
         width: 35,
         paddingTop: 8,
         paddingLeft:5,
-        paddingRight:5
+        paddingRight:5,
+        marginRight: 10
       },
      
       btnImage:

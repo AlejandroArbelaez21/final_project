@@ -51,6 +51,11 @@ export default class Login extends Component {
                       storekeeper_type: JSON.stringify(responseJson.storekeeper_type)})
         
       })
+      .catch(function(error) {
+        console.log('There has been a problem with your fetch operation: ' + error.message);
+         // ADD THIS THROW error
+          throw error;
+        });
     }
 }
 

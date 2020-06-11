@@ -57,6 +57,7 @@ const loginStyles = StyleSheet.create({
     txtTransparent: {
         color: color.ORANGE,
         fontSize: 14,
+        backgroundColor: '#fff'
     },
     
     background: {

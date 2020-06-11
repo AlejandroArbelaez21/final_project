@@ -39,7 +39,7 @@ class Post extends Component {
                    placeholder="Motorcycle price"
                    onChangeText={ debt => this.setState({debt})}
                    value={this.state.debt}/>
-        <GradientButton style={{alignSelf:'center', padding: 5, width:'103%'}} gradientBegin='#fc6552' gradientEnd="#fe2725" text="Pick your moto" textStyle={{ fontWeight: 'bold' }} onPressAction={this.submit}/>
+        <GradientButton style={{alignSelf:'center', padding: 5, width:'103%'}} gradientBegin='#ff9259' gradientEnd="#ff2426" text="Pick your moto" textStyle={{ fontWeight: 'bold' }} onPressAction={this.submit}/>
       </View>
     );
   }
