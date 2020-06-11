@@ -4,7 +4,6 @@ import {getBlogs, deleteBlog} from '../../actions';
 import {connect} from 'react-redux';
 import _ from 'lodash';
 import Carousel from 'react-native-snap-carousel';
-import NumberFormat from 'react-number-format';
 
 class Blogs extends Component {
 
