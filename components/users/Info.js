@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
         marginBottom: 50,
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#fc6552'
+        color: '#ff441f'
     },
     h2: {
         flex: 1,
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         fontSize: 15,
         fontWeight: 'bold',
-        color: '#fc6552'
+        color: '#ff441f'
     },
     text: {
         marginHorizontal: 15,

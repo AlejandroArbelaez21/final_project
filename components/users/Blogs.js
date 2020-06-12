@@ -32,10 +32,10 @@ class Blogs extends Component {
             showsVerticalScrollIndicator={false}
             renderItem={({item}) => {
               return (
-                <View style={{flex: 0.98, borderRadius:15, marginTop: 45, borderWidth: 2, backgroundColor:'#ff2426', borderColor:'#ff2426'}}>
+                <View style={{marginTop:45, marginLeft:5, width:'98%', elevation:7, flex: 0.97, borderRadius:15, backgroundColor: '#fff', borderColor:'#ff2426'}}>
                   <ImageBackground 
-                  source={require('../../src/photos/photo1.jpeg')}
-                  style={{flex: 0.97, elevation:9, marginTop:15, width: '100%', justifyContent:'center'}}>
+                  source={{uri: item.image}}
+                  style={{flex: 0.97, marginTop:15, width: '100%', justifyContent:'center'}}>
                   <TouchableHighlight style={{padding:10, flex:1, justifyContent:'flex-end', marginBottom: 20}} onPress={() => this.props.navigation.navigate('Edit', {...item})}>
                     <View style={{padding:1, justifyContent:'flex-end'}}>
                       <Text style={{textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: 1, height: 1},

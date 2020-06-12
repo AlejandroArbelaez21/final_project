@@ -11,19 +11,11 @@ class Edit extends Component {
     key: this.props.navigation.state.params.key,
     description: this.props.navigation.state.params.description,
     debt: this.props.navigation.state.params.debt,
-    invest: '',
-    subkey: ''
+    invest: ''
   }
 
   invested(title, content){
     Alert.alert("You have invested $" + content + ' in ' + title + '!')
-  }
-
-  counter(){
-    this.setState({
-      subkey: this.props.navigation.state.params.key
-    })
-    console.log(this.state.subkey)
   }
 
   submit = () => {

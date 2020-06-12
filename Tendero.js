@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Routes from './components/tenderos/Routes';
-import Router from './components/tenderos/Router/Router'
+import Router from './components/couriers/Router/Router'
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 import ReduxThunk from 'redux-thunk';

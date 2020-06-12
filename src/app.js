@@ -6,7 +6,7 @@ import Courier from '../Tendero';
 import LoginScreenUser from '../app/screens/LoginScreenUser';
 import LoginScreenCourier from '../app/screens/LoginScreenCourier';
 import SplashScreenUser from '../components/users/SplashScreen';
-import SplashScreenCourier from '../components/tenderos/SplashScreen';
+import SplashScreenCourier from '../components/couriers/SplashScreen';
 
 const LoginNavigator = createStackNavigator({
   Main : {
