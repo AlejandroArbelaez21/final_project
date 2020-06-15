@@ -22,7 +22,6 @@ const Stack = createStackNavigator({
         navigationOptions: () => ({
             headerTitleAlign: "center", 
             headerTitle:"Invest",
-            headerShown: false
         })
     }
 })

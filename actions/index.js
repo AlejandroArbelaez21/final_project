@@ -21,9 +21,9 @@ export function getBlogs(){
     }
 }
 
-export function postBlogs(title, content, debt, description, image){
+export function postBlogs(id, title, age, content, description, image, motoInfo){
     return(dispatch) => {
-        firebase.database().ref('/courier').push({title, content, debt, description, image})
+        firebase.database().ref('/courier').push({id, title, age, content, description, image, motoInfo})
     }
 }
 
@@ -81,8 +81,23 @@ export function getMotos(){
   }
 }
 
-export function editMotoPrice(debt, key){
+export function getMotoInfo(key){
   return(dispatch) => {
-      firebase.database().ref(`/courier`).child(key).update({debt, key})
+
+    dispatch({
+      type:"BLOGS_LOADING_STATUS",
+      payload:true
+    })
+
+    firebase.database().ref('/moto' + key).on('value', snapshot => {
+      dispatch({
+          type: "BLOGS_FETCH",
+          payload: snapshot.val()
+      })
+      dispatch({
+        type:"BLOGS_LOADING_STATUS",
+        payload:false
+      })
+    })
   }
 }

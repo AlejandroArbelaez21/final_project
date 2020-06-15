@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TextInput, View, Text, StyleSheet, ImageBackground, Image, ScrollView } from 'react-native';
+import { Alert, TouchableHighlight, TextInput, View, Text, StyleSheet, ImageBackground, Image, ScrollView } from 'react-native';
 import {getMotos, postBlogs} from '../../actions';
 import {connect} from 'react-redux';
 import GradientButton from 'react-native-gradient-buttons';
@@ -7,20 +7,49 @@ import Popup from './Popup';
 import { RadioButton } from 'react-native-paper';
 import _ from 'lodash';
 import Carousel from 'react-native-snap-carousel';
-
+import * as ImagePicker from 'expo-image-picker';
+import firebase from '../../fb';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 class Post extends Component {
   state = {
+    id: '',
     title: "",
-    debt: null,
+    age: '',
     description: null,
-    image: 'https://images.pexels.com/photos/789798/pexels-photo-789798.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+    image: '',
+    motoInfo: '',
+    token: '',
     checked: ''
   }
   constructor(props) {
     super(props);
     this.state = {
+      proPhoto: "Choose a profile photo..",
+      id: '',
+      age: '',
+      motoInfo: ''
     };
+  }
+
+  _getMoto = async (item) => {
+    this.setState({motoInfo: item});
+  }
+    
+
+
+  _getImage = async (id) => {
+    fetch('https://firebasestorage.googleapis.com/v0/b/crud-7936b.appspot.com/o/courier%2F' + id, {
+      method: 'GET',
+    }).then((response) => response.json())
+    .then((responseJson) => {
+      this.setState({token: JSON.stringify(responseJson.downloadTokens)})
+    })
+    .catch(function(error) {
+      console.log('There has been a problem with your fetch operation: ' + error.message);
+        throw error;
+      });
+      this.setState({image: 'https://firebasestorage.googleapis.com/v0/b/crud-7936b.appspot.com/o/courier%2F' + this.state.id +'?alt=media&token=' + this.state.token});
   }
 
   componentDidMount(){
@@ -31,16 +60,64 @@ class Post extends Component {
     return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
   }
 
-  submit = () => {
-    this.props.postBlogs(this.state.title, 0, this.state.debt, this.state.description, 'https://images.pexels.com/photos/789798/pexels-photo-789798.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940')
+  onChooseImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync();
+
+    if (!result.cancelled) {
+      this.uploadImage(result.uri, this.state.id)
+      .then(() => {
+        this.setState({proPhoto: 'Profile photo uploaded!'});
+        Alert.alert('Profile photo uploaded');
+      })
+      .catch(error => {
+        Alert.alert(error);
+      });
+    }
+  }
+
+  uploadImage = async (uri, id) => {
+    this._getImage(this.state.id);
+
+    const response = await fetch(uri);
+    const blob = await response.blob();    
+    var ref = firebase.storage().ref().child('courier/' + id);
+    return ref.put(blob)
+  }
+
+  onChangedId (text) {
     this.setState({
-      title: "",
-      debt: null,
-      description: null,
-      image: null,
-      checked: ''
-    })
-    this.props.navigation.navigate('Router')
+      id: text.replace(/[^0-9]/g, ''),
+    });
+  }
+
+  onChangedAge (text) {
+    this.setState({
+      age: text.replace(/[^0-9]/g, ''),
+    });
+  }
+
+  submit = () => {
+    if(parseInt(this.state.id) < 10000000) {
+      Alert.alert('Your id must have 8 or 10 digits');
+    } else {
+      if(parseInt(this.state.age) < 18) {
+        Alert.alert('Your must be 18+');
+      } else {
+        this.props.postBlogs(this.state.id, this.state.title, this.state.age, 0, this.state.description, this.state.image, this.state.motoInfo)
+        this.setState({
+          id: '',
+          title: "",
+          debt: null,
+          description: null,
+          image: null,
+          age: '',
+          token: '',
+          propPhoto: 'Choose a profile photo../',
+          checked: ''
+        })
+        this.props.navigation.navigate('Router')
+      }
+    }
   }
 
   render() {
@@ -50,16 +127,45 @@ class Post extends Component {
           <Popup/>
         <ScrollView>
         <View style={{flex: 1, alignItems:'center'}}>
-          <Text style={styles.h1}>Your info:</Text>
-          <TextInput style={{padding: 10, width: '90%', height: 40, borderColor: 'gray', borderWidth: 1}} placeholder="Your full name" onChangeText={ title => this.setState({title})} value={this.state.title}/>
+          <Text style={styles.h1}>Your personal info:</Text>
+          <TextInput
+          style={{padding: 10, width: '90%', height: 40, borderColor: 'gray', borderWidth: 1}}
+          placeholder="Your id"
+          keyboardType = 'number-pad'
+          value={this.state.id}
+          onChangeText={(text)=> this.onChangedId(text)}
+          maxLength={10}/>
+          <TextInput style={{padding: 10, width: '90%', marginTop: 20, height: 40, borderColor: 'gray', borderWidth: 1}} placeholder="Your full name" onChangeText={ title => this.setState({title})} value={this.state.title}/>
+          <TextInput
+          style={{padding: 10, width: '90%', marginTop: 20, height: 40, borderColor: 'gray', borderWidth: 1}}
+          placeholder="How old are you?"
+          keyboardType = 'number-pad'
+          value={this.state.age}
+          onChangeText={(age)=> this.onChangedAge(age)}
+          maxLength={2}/>
           <TextInput style={{padding: 10, width: '90%', marginTop: 20, height: 100, borderColor: 'gray', borderWidth: 1}} placeholder="Tell your investors something about you" onChangeText={ description => this.setState({description})} value={this.state.description}/>
         </View>
+        
+        <View style={{alignSelf: 'center', flexDirection: 'row', flex:1, padding: 10, width: '90%', marginTop: 20, height: 40, borderColor: 'gray', borderWidth: 1}}>
+          <View style={{flex: 1}}>
+            <Text style={styles.h2}>{this.state.proPhoto}</Text>
+          </View>
+          <View style={{flex: 0.2, justifyContent: 'center', alignContet: 'center'}}>
+            <TouchableHighlight onPress={this.onChooseImage}>
+              <Icon
+                name="camera"
+                color="gray"
+                size={30}/>
+            </TouchableHighlight>
+          </View>
+        </View>
+
         <View style={{marginTop:40, flex: 0.4, alignItems:'center'}}>
-          <Text style={styles.h1}>Now, pick the moto of your dreams:</Text>
+          <Text style={styles.h1}>Now, pick your next best friend:</Text>
         </View>
         <View>
           {
-            this.props.loadingReducer ? <Image style={{width: 100, height:100}} source={require('../../app/recursos/images/load.gif')}/> :
+            this.props.loadingReducer ? <Image style={{alignSelf: 'center', width: 100, height:100}} source={require('../../app/recursos/images/load.gif')}/> :
             <Carousel style={{width: '100%'}}
             sliderWidth={340}
             itemWidth={340}
@@ -83,7 +189,7 @@ class Post extends Component {
                         <RadioButton
                           value={item.key}
                           status={checked === item.key ? 'checked' : 'unchecked'}
-                          onPress={() => { this.setState({ checked: item.key, debt: item.motoPrice }); }}
+                          onPress={() => { this._getMoto(item), this.setState({ checked: item.key}); }}
                         />
                     </View>
                   </ImageBackground>
@@ -94,7 +200,7 @@ class Post extends Component {
           </View>
           </ScrollView>
         <GradientButton 
-        style={{alignSelf:'center', padding: 5, width:'103%'}} 
+        style={{marginTop: 20, alignSelf:'center', padding: 5, width:'103%'}} 
         gradientBegin='#ff9259' 
         gradientEnd="#ff2426" 
         text="Submit" 
@@ -116,6 +222,13 @@ const styles = StyleSheet.create({
     margin: 20,
     textAlign: 'center',
     fontSize: 20,
+    fontWeight: 'bold',
+    color: '#fc6552'
+  },
+  h2: {
+    textAlign: 'center',
+    marginLeft: 50,
+    fontSize: 15,
     fontWeight: 'bold',
     color: '#fc6552'
   },
