@@ -41,17 +41,17 @@ class Blogs extends Component {
                   <TouchableHighlight style={{padding:10, flex:1, justifyContent:'flex-end', marginBottom: 20}} onPress={() => this.props.navigation.navigate('Edit', {...item})}>
                     <View style={{padding:1, justifyContent:'flex-end'}}>
                       <Text style={{textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: 1, height: 1},
-                      textShadowRadius: 10, fontSize:35, marginBottom: 2, fontWeight:'bold', color:'white'}}>{item.title}</Text>
+                      textShadowRadius: 10, fontSize:30, marginBottom: 2, fontWeight:'bold', color:'white'}}>{item.title}</Text>
                       <Text style={{textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: 1, height: 1},
-                      textShadowRadius: 10, fontSize:20, marginBottom: 10, fontWeight:'bold', color:'white'}}>{item.age} years old</Text>
+                      textShadowRadius: 10, fontSize:17, marginBottom: 10, fontWeight:'bold', color:'white'}}>{item.age} years old</Text>
                       <Text style={{textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: 1, height: 1},
-                      textShadowRadius: 10, fontSize:20, marginBottom: 10, fontWeight:'bold', color:'white'}}>{item.description}</Text>
+                      textShadowRadius: 10, fontSize:17, marginBottom: 10, fontWeight:'bold', color:'white'}}>{item.description}</Text>
                       <Text style={{textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: 1, height: 1},
-                      textShadowRadius: 10, fontSize:24, lineHeight:30, color:'white', fontWeight:'bold'}}>Goal: {this.currencyFormat(parseInt(item.motoInfo.motoPrice))}</Text>
+                      textShadowRadius: 10, fontSize:19, lineHeight:30, color:'white', fontWeight:'bold'}}>Goal: {this.currencyFormat(parseInt(item.motoInfo.motoPrice))}</Text>
                       <Text style={{textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: 1, height: 1},
-                      textShadowRadius: 10, fontSize:24, lineHeight:30, color:'white', fontWeight:'bold'}}>Current amount: {this.currencyFormat(parseInt(item.content))}</Text>
+                      textShadowRadius: 10, fontSize:19, lineHeight:30, color:'white', fontWeight:'bold'}}>Current amount: {this.currencyFormat(parseInt(item.content))}</Text>
                       <Text style={{textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: 1, height: 1},
-                      textShadowRadius: 10, fontSize:24, lineHeight:30, color:'white', fontWeight:'bold'}}>Only {this.currencyFormat(parseInt(item.motoInfo.motoPrice) - parseInt(item.content))} more!</Text>
+                      textShadowRadius: 10, fontSize:19, lineHeight:30, color:'white', fontWeight:'bold'}}>Only {this.currencyFormat(parseInt(item.motoInfo.motoPrice) - parseInt(item.content))} more!</Text>
                     </View>
                   </TouchableHighlight>
                   </ImageBackground>
