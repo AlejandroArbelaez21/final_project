@@ -19,7 +19,7 @@ export default function LoginScreen({navigation}) {
       <View style={[loginStyles.container, { backgroundColor: '#fff'}]}>
          <StatusBar style={{backgroundColor: 'white'}} translucent={true}/>
          <View >
-            <Image style={styles.image} source={require('../recursos/images/rappilogo.png')}/>
+            <Image style={styles.image} source={require('../resources/images/rappilogo.png')}/>
          </View>
          <View style={{marginTop: 25}}>
             <MyTextInput keyboardType='email-address' placeholder='E-mail' image='user'/>

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableHighlight, ImageBackground, Image } from 'react-native';
-import {getBlogs, deleteBlog} from '../../actions';
+import {getBlogs, deleteBlog} from '../../firebase/actions';
 import {connect} from 'react-redux';
 import _ from 'lodash';
 import Carousel from 'react-native-snap-carousel';
-import firebase from '../../fb'
+
 
 class Blogs extends Component {
 
@@ -24,7 +24,7 @@ class Blogs extends Component {
     return (
       <View style={styles.container}>
           {
-            this.props.loadingReducer ? <Image style={{width: 100, height:100}} source={require('../recursos/images/load.gif')}/> :
+            this.props.loadingReducer ? <Image style={{width: 100, height:100}} source={require('../resources/images/load.gif')}/> :
             <Carousel style={{width: '100%'}}
             sliderWidth={340}
             itemWidth={340}

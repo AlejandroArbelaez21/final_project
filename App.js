@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Setup from "./src/boot/setup";
+import Setup from "./main/boot/setup";
 import { Root } from 'native-base';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';

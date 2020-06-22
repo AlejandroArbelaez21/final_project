@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Alert, View, Text, StyleSheet, TextInput, ScrollView } from 'react-native';
-import {editBlog} from '../../actions';
+import {editBlog} from '../../firebase/actions';
 import {connect} from 'react-redux';
 import GradientButton from 'react-native-gradient-buttons';
 

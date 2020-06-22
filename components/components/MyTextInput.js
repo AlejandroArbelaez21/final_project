@@ -21,7 +21,7 @@ export default function MyTextInput(props){
         rightIcon={props.bolGone?
         <TouchableOpacity activeOpacity = { 0.8 } style={styles.btnVisibility} onPress = {props.onPress}>
         <Image style={ styles.btnImage} tintColor={color.ORANGE} 
-        source = { (props.secureTextEntry) ? require('../recursos/images/eye_show.png') : require('../recursos/images/eye_not_show.png')}/>
+        source = { (props.secureTextEntry) ? require('../resources/images/eye_show.png') : require('../resources/images/eye_not_show.png')}/>
         </TouchableOpacity>:
         <Icon size={24} color={color.PRIMARYCOLOR}
         type={'font-awesome'} name={props.imageRight}/>}

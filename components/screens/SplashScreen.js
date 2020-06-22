@@ -27,7 +27,7 @@ export default class LoginScreen extends Component{
                         height: 200,
                         margin: 100,
                     }}
-                    source={require('../recursos/images/load.gif')}
+                    source={require('../resources/images/load.gif')}
                 />
             </View>
         )

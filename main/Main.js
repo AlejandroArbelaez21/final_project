@@ -22,7 +22,7 @@ class Main extends Component {
         <StatusBar backgroundColor='black' barStyle="default" hidden={false} translucent={false}/>
         <TouchableOpacity onPress={this.LoginUser} style={styles.button}>
           <View style={styles.button}>
-            <ImageBackground source={require('../recursos/images/user.jpg')}
+            <ImageBackground source={require('../components/resources/images/user.jpg')}
             style={{flex: 1, width: '100%', justifyContent:'center'}}>
               <Text style={styles.text}>Rappi User</Text>
             </ImageBackground>
@@ -30,7 +30,7 @@ class Main extends Component {
         </TouchableOpacity>
         <TouchableOpacity onPress={this.LoginCourier} style={styles.button}>
           <View style={styles.button}>
-            <ImageBackground source={require('../recursos/images/courier.jpeg')}
+            <ImageBackground source={require('../components/resources/images/courier.jpeg')}
             style={{flex: 1, width: '100%', justifyContent:'center'}}>
               <Text style={styles.text}>Rappi Courier</Text>
             </ImageBackground>

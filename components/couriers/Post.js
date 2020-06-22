@@ -197,7 +197,7 @@ class Post extends Component {
         </View>
         <View>
           {
-            this.props.loadingReducer ? <Image style={{alignSelf: 'center', width: 100, height:100}} source={require('../../app/recursos/images/load.gif')}/> :
+            this.props.loadingReducer ? <Image style={{alignSelf: 'center', width: 100, height:100}} source={require('../resources/images/load.gif')}/> :
             <Carousel style={{width: '100%'}}
             sliderWidth={340}
             itemWidth={340}

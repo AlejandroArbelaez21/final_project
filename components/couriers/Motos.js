@@ -37,7 +37,7 @@ class Motos extends Component {
       <View style={styles.container}>
         <View style={{elevation:8, flex:1, justifyContent: 'center'}}>
           {
-            this.props.loadingReducer ? <Image style={{width: 100, height:100}} source={require('../../app/recursos/images/load.gif')}/> :
+            this.props.loadingReducer ? <Image style={{width: 100, height:100}} source={require('../resources/images/load.gif')}/> :
             <Carousel style={{width: '100%'}}
             sliderWidth={340}
             itemWidth={340}

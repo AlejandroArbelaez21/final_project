@@ -1,6 +1,6 @@
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import SplashScreen from '../../app/screens/SplashScreen';
+import SplashScreen from '../../components/screens/SplashScreen';
 import App from "../loginStack";
 
 const Setup = createStackNavigator({

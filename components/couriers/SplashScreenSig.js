@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { View, StatusBar } from 'react-native'
 import * as Animatable from 'react-native-animatable'
-import { splashStyles } from '../../app/styles/styles'
+import { splashStyles } from '../styles/styles'
 
 export default class LoginScreen extends Component{
     goToScreen(routeName){
@@ -27,7 +27,7 @@ export default class LoginScreen extends Component{
                         height: 200,
                         margin: 100,
                     }}
-                    source={require('../../app/recursos/images/load.gif')}
+                    source={require('../resources/images/load.gif')}
                 />
             </View>
         )
