@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ImageBackground, Image } from 'react-native';
-import {getMotos, editMotoPrice} from '../../actions';
+import {getMotos, editMotoPrice} from '../../firebase/actions';
 import {connect} from 'react-redux';
 import GradientButton from 'react-native-gradient-buttons';
 import _ from 'lodash';

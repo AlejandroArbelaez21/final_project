@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import GradientButton from 'react-native-gradient-buttons';
 
-class Profile extends Component {
+class Profile2 extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,12 +18,12 @@ class Profile extends Component {
       <View style={styles.container}>
           <View style={{marginTop: 40, flex: 1, justifyContent: 'center'}}>
             <Text style={[styles.h1, {marginBottom: 20}]}>Sergio!</Text>
-            <Text style={[styles.h2]}>For your future Auteco Bajaj Boxer S</Text>
+            <Text style={[styles.h2]}>For your future Auteco Baja Boxer S</Text>
             <Text style={[styles.h2]}>Your goal is</Text>
             <Text style={{color:'black', margin:10, textAlign:'center', fontSize:20, fontWeight:'bold'}}>{this.currencyFormat(3499000)}</Text>
             <Text style={[styles.h2]}>And have collected</Text>
-            <Text style={{color:'#5de143', margin:10, textAlign:'center', fontSize:20, fontWeight:'bold'}}>{this.currencyFormat(0)}</Text>
-            <Text style={styles.h2}>You need $3,499,000 more!</Text>
+            <Text style={{color:'#5de143', margin:10, textAlign:'center', fontSize:20, fontWeight:'bold'}}>{this.currencyFormat(100000)}</Text>
+            <Text style={styles.h2}>You need $3,399,000 more!</Text>
             <Text style={styles.h2}>You will be notified when you achieve your goal.</Text>
           </View>
           <View style={{flex: 0.25, justifyContent: 'center'}}>
@@ -59,4 +59,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default Profile;
+export default Profile2;

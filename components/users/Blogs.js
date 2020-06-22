@@ -24,7 +24,7 @@ class Blogs extends Component {
     return (
       <View style={styles.container}>
           {
-            this.props.loadingReducer ? <Image style={{width: 100, height:100}} source={require('../../app/recursos/images/load.gif')}/> :
+            this.props.loadingReducer ? <Image style={{width: 100, height:100}} source={require('../recursos/images/load.gif')}/> :
             <Carousel style={{width: '100%'}}
             sliderWidth={340}
             itemWidth={340}
@@ -34,10 +34,13 @@ class Blogs extends Component {
             renderItem={({item}) => {
               return (
                 <View style={{marginTop:45, marginLeft:5, width:'98%', elevation:7, flex: 0.97, borderRadius:15, backgroundColor: '#fff', borderColor:'#ff2426'}}>
-                  <Image source={this.spaceRef}/>
                   <ImageBackground 
                   source={{uri: item.image}}
                   style={{flex: 0.97, marginTop:15, width: '100%', justifyContent:'center'}}>
+                    <View style={{padding:1, justifyContent:'flex-end'}}>
+                      <Text style={{textAlign: 'center', textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: 1, height: 1},
+                      textShadowRadius: 10, fontSize:25, marginBottom: 2, fontWeight:'bold', color:'#5de143'}}>{((item.motoInfo.revenue)/2).toFixed(2)}% of revenue</Text>
+                    </View>
                   <TouchableHighlight style={{padding:10, flex:1, justifyContent:'flex-end', marginBottom: 20}} onPress={() => this.props.navigation.navigate('Edit', {...item})}>
                     <View style={{padding:1, justifyContent:'flex-end'}}>
                       <Text style={{textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: 1, height: 1},

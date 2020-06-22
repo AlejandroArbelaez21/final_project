@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Alert, TouchableHighlight, TextInput, View, Text, StyleSheet, ImageBackground, Image, ScrollView } from 'react-native';
-import {getMotos, postBlogs} from '../../actions';
+import {getMotos, postBlogs} from '../../firebase/actions';
 import {connect} from 'react-redux';
 import GradientButton from 'react-native-gradient-buttons';
 import Popup from './Popup';
@@ -8,7 +8,7 @@ import { RadioButton } from 'react-native-paper';
 import _ from 'lodash';
 import Carousel from 'react-native-snap-carousel';
 import * as ImagePicker from 'expo-image-picker';
-import firebase from '../../fb';
+import firebase from '../../firebase/fb';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 class Post extends Component {
@@ -20,6 +20,8 @@ class Post extends Component {
     image: '',
     motoInfo: '',
     token: '',
+    time: '',
+    rate: '',
     checked: ''
   }
   constructor(props) {
@@ -28,7 +30,9 @@ class Post extends Component {
       proPhoto: "Choose a profile photo..",
       id: '',
       age: '',
-      motoInfo: ''
+      motoInfo: '',
+      time: '',
+      rate: ''
     };
   }
 
@@ -71,6 +75,7 @@ class Post extends Component {
       })
       .catch(error => {
         Alert.alert(error);
+        throw error;
       });
     }
   }
@@ -96,6 +101,18 @@ class Post extends Component {
     });
   }
 
+  onChangedTime (text) {
+    this.setState({
+      time: text.replace(/[^0-9]/g, ''),
+    });
+  }
+
+  onChangedRate (text) {
+    this.setState({
+      rate: text.replace(/[^0-9]/g, ''),
+    });
+  }
+
   submit = () => {
     if(parseInt(this.state.id) < 10000000) {
       Alert.alert('Your id must have 8 or 10 digits');
@@ -103,7 +120,7 @@ class Post extends Component {
       if(parseInt(this.state.age) < 18) {
         Alert.alert('Your must be 18+');
       } else {
-        this.props.postBlogs(this.state.id, this.state.title, this.state.age, 0, this.state.description, this.state.image, this.state.motoInfo)
+        this.props.postBlogs(this.state.id, this.state.title, this.state.age, 0, this.state.description, this.state.image, this.state.motoInfo, this.state.time, this.state.rate)
         this.setState({
           id: '',
           title: "",
@@ -112,6 +129,8 @@ class Post extends Component {
           image: null,
           age: '',
           token: '',
+          time: '',
+          rate: '',
           propPhoto: 'Choose a profile photo../',
           checked: ''
         })
@@ -143,6 +162,19 @@ class Post extends Component {
           value={this.state.age}
           onChangeText={(age)=> this.onChangedAge(age)}
           maxLength={2}/>
+          <TextInput
+          style={{padding: 10, width: '90%', marginTop: 20, height: 40, borderColor: 'gray', borderWidth: 1}}
+          placeholder="How long have you been in Rappi (Years)"
+          keyboardType = 'number-pad'
+          value={this.state.time}
+          onChangeText={(time)=> this.onChangedTime(time)}
+          maxLength={2}/>
+          <TextInput
+          style={{padding: 10, width: '90%', marginTop: 20, height: 40, borderColor: 'gray', borderWidth: 1}}
+          placeholder="Your rate in Rappi"
+          keyboardType = 'number-pad'
+          value={this.state.rate}
+          onChangeText={ rate => this.setState({rate})}/>
           <TextInput style={{padding: 10, width: '90%', marginTop: 20, height: 100, borderColor: 'gray', borderWidth: 1}} placeholder="Tell your investors something about you" onChangeText={ description => this.setState({description})} value={this.state.description}/>
         </View>
         

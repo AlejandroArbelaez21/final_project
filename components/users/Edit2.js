@@ -16,6 +16,7 @@ class Edit extends Component {
     revenue: this.props.navigation.state.params.motoInfo.revenue,
     time: this.props.navigation.state.params.time,
     rate: this.props.navigation.state.params.rate,
+    fakeinvest: '100000',
     invest: ''
   }
 
@@ -37,8 +38,6 @@ class Edit extends Component {
       key: "",
       description: ""
     })
-
-    this.props.navigation.navigate('Invest');
   }
   }
 
@@ -58,28 +57,20 @@ currencyFormat = (num) => {
         <ScrollView>
           <View style={{flex: 1, justifyContent: 'center'}}>
             <Text style={[styles.h1, {marginBottom: 20}]}>{this.state.title}</Text>
-            <Text style={[styles.h2, {marginBottom: 10}]}>"{this.state.description}"</Text>
+            <Text style={[styles.h2, {marginBottom: 20}]}>"{this.state.description}"</Text>
             <Text style={{color:'black', margin:10, textAlign:'center', fontSize:20, fontWeight:'bold'}}>Motorcycle: {this.state.motoBrand} {this.state.motoName}</Text>
             <Text style={{color:'black', margin:10, textAlign:'center', fontSize:20, fontWeight:'bold'}}>Goal: {this.currencyFormat(parseInt(this.state.motoPrice))}</Text>
-            <Text style={{color:'#fc6552', margin:10, textAlign:'center', fontSize:20, fontWeight:'bold'}}>Money collected: {this.currencyFormat(parseInt(this.state.motoPrice) - parseInt(this.state.content))}</Text>
+            <Text style={{color:'#fc6552', margin:10, textAlign:'center', fontSize:20, fontWeight:'bold'}}>Money collected: {this.currencyFormat(parseInt(this.state.content))}</Text>
             <Text style={[styles.h2]}></Text>
             <Text style={[styles.h2]}>This person has {this.state.time} years in Rappi, with a rate of {this.state.rate}</Text>
             <Text style={[styles.h2]}></Text>
-            <Text style={styles.h2}>Your income for invest in this person will be</Text>
-            <Text style={{color:'#5de143', margin:10, textAlign:'center', fontSize:25, fontWeight:'bold'}}>{(this.state.revenue / 2).toFixed(2)}%</Text>
-          </View>
-          <View style={{flex: 1}}>
-            <Text style={styles.h1}>How much do you want to invest?</Text>
-            <TextInput keyboardType = 'number-pad'
-                      style={{marginBottom: 20, marginTop: 20, height: 40, borderColor: 'gray', borderWidth: 1, padding: 5}}
-                      placeholder="min. $20.000"
-                      value={`${this.state.invest}`}
-                      onChangeText={(text)=> this.onChanged(text)}
-                      maxLength={6}/>
-          </View>
-          <View style={{flex: 0.5, justifyContent: 'flex-end'}}>
-            <GradientButton GradientButton style={{alignSelf:'center', padding: 5, width:'103%'}} gradientBegin='#ff9259' gradientEnd="#ff2426" text="Invest" textStyle={{ fontWeight: 'bold' }}
-            onPressAction={this.submit}/>
+            <Text style={[styles.h2]}></Text>
+            <Text style={styles.h3}>Your invest: {this.currencyFormat(parseInt(this.state.fakeinvest))}</Text>
+            <Text style={styles.h3}>Income rate: {(this.state.revenue / 2).toFixed(2)}%</Text>
+            <Text style={styles.h2}></Text>
+            <Text style={styles.h3}>Total revenue</Text>
+            <Text style={{color:'#5de143', margin:10, textAlign:'center', fontSize:25, fontWeight:'bold'}}>{this.currencyFormat(parseInt((this.state.revenue / 2).toFixed(2)/100 * this.state.fakeinvest))}</Text>
+            <Text style={[styles.h2, {marginBottom: 20}]}>(touch Info icon to know more)</Text>            
           </View>
         </ScrollView>
       </View>
@@ -105,6 +96,11 @@ const styles = StyleSheet.create({
       fontSize: 15,
       fontWeight: 'bold',
     },
+    h3: {
+      textAlign: 'center',
+      fontSize: 20,
+      fontWeight: 'bold',
+    },
 })
 
-export default connect(null, {editBlog})(Edit);
+export default Edit;

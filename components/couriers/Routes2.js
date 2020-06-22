@@ -1,6 +1,6 @@
 import React from 'react';
 import Post from './Post';
-import Profile from './Profile';
+import Profile2 from './Profile2';
 import Thanks from './Thanks';
 import MyInvestors from './MyInvestors';
 import Info from './Info';
@@ -10,8 +10,8 @@ import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {createAppContainer} from 'react-navigation';
 
 const TenStack = createStackNavigator({
-    Profile: {
-        screen: Profile,
+    Profile2: {
+        screen: Profile2,
         navigationOptions: () => ({
             headerTitleAlign: "center",
             headerTitle:"Investments",

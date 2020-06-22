@@ -2,6 +2,7 @@ import React from 'react';
 import Blogs from './Blogs';
 import MyInvestments from './MyInvestments';
 import Edit from './Edit';
+import Edit2 from './Edit2';
 import Info from './Info';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {createStackNavigator} from 'react-navigation-stack';
@@ -19,6 +20,13 @@ const Stack = createStackNavigator({
     },
     Edit: {
         screen: Edit,
+        navigationOptions: () => ({
+            headerTitleAlign: "center", 
+            headerTitle:"Invest",
+        })
+    },
+    Edit2: {
+        screen: Edit2,
         navigationOptions: () => ({
             headerTitleAlign: "center", 
             headerTitle:"Invest",
