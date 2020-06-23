@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, ImageBackground, Image } from 'react-native';
 import {getMotos, editMotoPrice} from '../../firebase/actions';
 import {connect} from 'react-redux';
-import GradientButton from 'react-native-gradient-buttons';
 import _ from 'lodash';
 import Carousel from 'react-native-snap-carousel';
 import { RadioButton } from 'react-native-paper';
@@ -15,14 +14,17 @@ class Motos extends Component {
   }
 
   componentDidMount(){
+    //Call the function that show motos in database
     this.props.getMotos()
   }
 
   currencyFormat = (num) => {
+    //convert number in currencyFormat
     return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
   }
 
   submit = () => {
+    //upgrade moto price and navigate to the courier stack
     this.props.editMotoPrice(this.state.debt, this.state.checked)
     this.setState({
       debt: "",

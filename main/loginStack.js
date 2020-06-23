@@ -10,6 +10,7 @@ import SplashScreenUser from '../components/users/SplashScreen';
 import SplashScreenCourierSig from '../components/couriers/SplashScreenSig';
 import SplashScreenCourierLog from '../components/couriers/SplashScreenLog';
 
+//Stack where the login screens and the started code of courier and user are located
 const LoginNavigator = createStackNavigator({
   Main : {
     screen : Main,

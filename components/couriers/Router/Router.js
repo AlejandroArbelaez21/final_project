@@ -4,7 +4,7 @@ import Post from '../Post';
 import Routes from '../Routes';
 import Motos from '../Motos';
 
-
+//Stack that contains all the courier screens
 const Router = createStackNavigator({
   Post : {
     screen : Post,

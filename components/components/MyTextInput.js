@@ -3,6 +3,7 @@ import {StyleSheet, TouchableOpacity, Image} from 'react-native'
 import {Icon, Input } from 'react-native-elements'
 import color from '../styles/colors'
 
+//Customized Input component
 export default function MyTextInput(props){
 
     return (

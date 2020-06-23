@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ImageBackground, StatusBar, TouchableOpacity } from 'react-native';
 
+//Choose profile type
 class Main extends Component {
   constructor(props) {
     super(props);

@@ -3,7 +3,6 @@ import GradientButton from 'react-native-gradient-buttons';
 import { 
    Text,
    View,
-   Linking,
    TouchableOpacity,
    StatusBar,
    Image,
@@ -11,9 +10,9 @@ import {
 } from 'react-native';
 import { loginStyles} from '../styles/styles';
 import MyTextInput from '../components/MyTextInput';
-import firebase from '../../firebase/fb';
 
 export default function LoginScreen({navigation}) {
+   //This function allow hide and show the eye of the password with a click
    const [hidePassword, setHidePassword] = useState(true)
 
   

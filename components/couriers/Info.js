@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { ScrollView, View, Text, StyleSheet } from 'react-native';
+import { ScrollView, Text, StyleSheet } from 'react-native';
 
+//Shows the terms and conditions for courier
 class Info extends Component {
   constructor(props) {
     super(props);

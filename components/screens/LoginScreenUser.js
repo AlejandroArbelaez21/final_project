@@ -13,6 +13,7 @@ import { loginStyles} from '../styles/styles';
 import MyTextInput from '../components/MyTextInput';
 
 export default function LoginScreen({navigation}) {
+   //This function allow hide and show the eye of the password with a click
    const [hidePassword, setHidePassword] = useState(true)
 
    return(
