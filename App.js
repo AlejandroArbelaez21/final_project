@@ -14,6 +14,7 @@ export default class App extends Component {
       Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
     });
     this.setState({ loading: false });
+  //while the app is loading
   }render() {
     if (this.state.loading) {
       return (
@@ -21,6 +22,7 @@ export default class App extends Component {
           <AppLoading />
         </Root>
       );
+    //when the app is loaded
     } else {
       return (
         <Root>

@@ -3,6 +3,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import SplashScreen from '../../components/screens/SplashScreen';
 import App from "../loginStack";
 
+//This is the stack that includes the firts splash and the app
 const Setup = createStackNavigator({
     Splash:{
        screen: SplashScreen,
