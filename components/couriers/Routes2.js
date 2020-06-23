@@ -1,8 +1,5 @@
 import React from 'react';
-import Post from './Post';
 import Profile2 from './Profile2';
-import Thanks from './Thanks';
-import MyInvestors from './MyInvestors';
 import Info from './Info';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {createStackNavigator} from 'react-navigation-stack';
@@ -17,14 +14,6 @@ const TenStack = createStackNavigator({
             headerTitle:"Investments",
             headerShown: false
             
-        })
-    },
-    Thanks: {
-        screen: Thanks,
-        navigationOptions: () => ({
-            headerTitleAlign: "center", 
-            headerTitle:"Invest",
-            headerShown: false
         })
     },
 })

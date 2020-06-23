@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
 })
 
 function mapStateToProps(state){
+  //gets motos from blogList
 const listOfBlogs = _.map(state.blogList.blogList, (val, key) => {
   return {
     ...val,

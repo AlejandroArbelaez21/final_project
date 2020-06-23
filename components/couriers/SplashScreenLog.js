@@ -4,11 +4,13 @@ import * as Animatable from 'react-native-animatable'
 import { splashStyles } from '../styles/styles'
 
 export default class LoginScreen extends Component{
+    //Navigate to the screen entered as a parameter
     goToScreen(routeName){
         this.props.navigation.navigate(routeName)
     }
 
     componentDidMount(){
+        //set a delay a the called function
         setTimeout ( () =>{
             this.goToScreen('CourierLog')
         }, 3000, this)

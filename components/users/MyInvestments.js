@@ -8,14 +8,17 @@ import _ from 'lodash';
 class MyInvestments extends Component {
 
   componentDidMount(){
+    //Calls the function that read the info of the courier
     this.props.getBlogs2()
   }
 
   res = (a, b) => {
+    //subtracts two numbers
     return() => parseInt(a) - parseInt(b)
   }
 
   currencyFormat = (num) => {
+    //convert number in currency format
     return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
  }
 

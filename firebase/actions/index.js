@@ -1,5 +1,6 @@
 import firebase from '../fb'
 
+//Calls to firebase
 export function getBlogs(){
     return(dispatch) => {
 

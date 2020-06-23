@@ -1,14 +1,12 @@
 import React from 'react';
-import Post from './Post';
 import Profile from './Profile';
-import Thanks from './Thanks';
-import MyInvestors from './MyInvestors';
 import Info from './Info';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {createAppContainer} from 'react-navigation';
 
+//This is a stack that contains all the screens related to the courier
 const TenStack = createStackNavigator({
     Profile: {
         screen: Profile,
@@ -17,14 +15,6 @@ const TenStack = createStackNavigator({
             headerTitle:"Investments",
             headerShown: false
             
-        })
-    },
-    Thanks: {
-        screen: Thanks,
-        navigationOptions: () => ({
-            headerTitleAlign: "center", 
-            headerTitle:"Invest",
-            headerShown: false
         })
     },
 })

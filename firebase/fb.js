@@ -1,5 +1,5 @@
 import * as firebase from 'firebase'
-
+// firebase configuration
 var firebaseConfig = {
     apiKey: "AIzaSyDM7dwIuYZj8SGFZ_DBAQ2ninqQIHAZ0y0",
     authDomain: "crud-7936b.firebaseapp.com",

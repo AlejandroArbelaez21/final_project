@@ -9,14 +9,17 @@ import Carousel from 'react-native-snap-carousel';
 class Blogs extends Component {
 
   componentDidMount(){
+    //Calls the function that read the info of the courier
     this.props.getBlogs()
   }
 
   res = (a, b) => {
+    //subtracts two numbers
     return() => parseInt(a) - parseInt(b)
   }
 
   currencyFormat = (num) => {
+    //convert number in currencyFormat
     return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
  }
 
@@ -78,6 +81,7 @@ const styles = StyleSheet.create({
 })
 
 function mapStateToProps(state){
+  //gets motos from blogList
   const listOfBlogs = _.map(state.blogList.blogList, (val, key) => {
     return {
       ...val,

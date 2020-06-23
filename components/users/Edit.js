@@ -20,10 +20,12 @@ class Edit extends Component {
   }
 
   invested(title, content){
+    //Shows an alert in screen after the invest
     Alert.alert("You have invested $" + content + ' in ' + title + '!')
   }
 
   submit = () => {
+    //Saves the changes after the invest
     if(parseInt(this.state.invest) < 20000) {
        Alert.alert('Your invest should be $20.000 or higher');
     } else {
@@ -43,12 +45,14 @@ class Edit extends Component {
   }
 
   onChanged (text) {
+    //Makes invest field only available for numbers
     this.setState({
         invest: text.replace(/[^0-9]/g, ''),
     });
 }
 
 currencyFormat = (num) => {
+  //convert number in currency format
   return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 }
 

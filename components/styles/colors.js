@@ -1,4 +1,5 @@
 export default {
+    //defines the colors in rgb format
     MAINCOLOR: '#FFB521',
     WHITE: 'white',
     SECONDARY: '#FFF',
