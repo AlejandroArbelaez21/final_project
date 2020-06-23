@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { View, Modal, StyleSheet, Text } from 'react-native';
 import GradientButton from 'react-native-gradient-buttons';
 import Info from './Info';
- 
+
+//Shows term and conditions in a popup before regristation
 class Popup extends Component {
   constructor(){
     super();

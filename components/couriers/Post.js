@@ -11,6 +11,7 @@ import * as ImagePicker from 'expo-image-picker';
 import firebase from '../../firebase/fb';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+//Post the courier in the database
 class Post extends Component {
   state = {
     id: '',
@@ -37,12 +38,14 @@ class Post extends Component {
   }
 
   _getMoto = async (item) => {
+    //put the info of the moto in the courier as a key
     this.setState({motoInfo: item});
   }
     
 
 
   _getImage = async (id) => {
+    //Save the profile image url in a variable
     fetch('https://firebasestorage.googleapis.com/v0/b/crud-7936b.appspot.com/o/courier%2F' + id, {
       method: 'GET',
     }).then((response) => response.json())
@@ -57,14 +60,17 @@ class Post extends Component {
   }
 
   componentDidMount(){
+    //Call the function that shows the motos in database
     this.props.getMotos()
   }
 
   currencyFormat = (num) => {
+    //convert number in currencyFormat
     return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
   }
 
   onChooseImage = async () => {
+    //choose image from device for profile of the courier
     let result = await ImagePicker.launchImageLibraryAsync();
 
     if (!result.cancelled) {
@@ -81,6 +87,7 @@ class Post extends Component {
   }
 
   uploadImage = async (uri, id) => {
+    //Takes onChooseImage() and saves the result in firebase storage
     this._getImage(this.state.id);
 
     const response = await fetch(uri);
@@ -90,30 +97,35 @@ class Post extends Component {
   }
 
   onChangedId (text) {
+    //Makes id field only available for numbers
     this.setState({
       id: text.replace(/[^0-9]/g, ''),
     });
   }
 
   onChangedAge (text) {
+    //Makes age field only available for numbers
     this.setState({
       age: text.replace(/[^0-9]/g, ''),
     });
   }
 
   onChangedTime (text) {
+    //Makes time field only available for numbers
     this.setState({
       time: text.replace(/[^0-9]/g, ''),
     });
   }
 
   onChangedRate (text) {
+    //Makes rate field only available for numbers
     this.setState({
       rate: text.replace(/[^0-9]/g, ''),
     });
   }
 
-  submit = () => {
+  //post the courier and all its characteristics in firebase
+    submit = () => {
     if(parseInt(this.state.id) < 10000000) {
       Alert.alert('Your id must have 8 or 10 digits');
     } else {
@@ -266,6 +278,7 @@ const styles = StyleSheet.create({
   },
 })
 function mapStateToProps(state){
+  //gets motos from blogList
   const listOfBlogs = _.map(state.blogList.blogList, (val, key) => {
     return {
       ...val,

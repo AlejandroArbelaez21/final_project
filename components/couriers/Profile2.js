@@ -10,6 +10,7 @@ class Profile2 extends Component {
   }
 
   currencyFormat = (num) => {
+    //convert number in currencyFormat
     return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
   }
 
