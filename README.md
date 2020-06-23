@@ -19,5 +19,5 @@ Please refer to each project's style and contribution guidelines for submitting 
 Anybody can access to this repository
 
 ## Authors
-Alejandro Arbelaez Giraldo [LinkedIn](https://www.linkedin.com/in/alejandro-arbelaez-giraldo/)
-Simon Parra Hernandez [LinkedIn](https://www.linkedin.com/in/simonparrah/)
+- Alejandro Arbelaez Giraldo [LinkedIn](https://www.linkedin.com/in/alejandro-arbelaez-giraldo/)
+- Simon Parra Hernandez [LinkedIn](https://www.linkedin.com/in/simonparrah/)
