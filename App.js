@@ -3,6 +3,7 @@ import Setup from "./main/boot/setup";
 import { Root } from 'native-base';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
+import FirstSplashScreen from './main/boot/FirstSplashScreen';
 
 export default class App extends Component {
   constructor(props) {
@@ -19,7 +20,7 @@ export default class App extends Component {
     if (this.state.loading) {
       return (
         <Root>
-          <AppLoading />
+          <FirstSplashScreen />
         </Root>
       );
     //when the app is loaded

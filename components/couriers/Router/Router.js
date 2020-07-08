@@ -22,7 +22,7 @@ const Router = createStackNavigator({
       headerShown: true
     }
   },
-  Router : {
+  Routes : {
     screen : Routes,
     navigationOptions: {
       title: 'RAPPI',

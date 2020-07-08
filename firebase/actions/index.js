@@ -22,30 +22,9 @@ export function getBlogs(){
     }
 }
 
-export function getBlogs2(){
-  return(dispatch) => {
-
-    dispatch({
-      type:"BLOGS_LOADING_STATUS",
-      payload:true
-    })
-
-    firebase.database().ref('/courier2').on('value', snapshot => {
-      dispatch({
-          type: "BLOGS_FETCH",
-          payload: snapshot.val()
-      })
-      dispatch({
-        type:"BLOGS_LOADING_STATUS",
-        payload:false
-      })
-    })
-  }
-}
-
-export function postBlogs(id, title, age, content, description, image, motoInfo, time, rate){
+export function postBlogs(id, title, age, content, description, image, motoInfo, time, rate, investors){
     return(dispatch) => {
-        firebase.database().ref('/courier').push({id, title, age, content, description, image, motoInfo, time, rate})
+        firebase.database().ref('/courier').push({id, title, age, content, description, image, motoInfo, time, rate, investors})
     }
 }
 
@@ -64,6 +43,20 @@ export function deleteBlog(key){
 export function editBlog(title, content, key, description){
   return(dispatch) => {
       firebase.database().ref(`/courier`).child(key).update({title, content, key, description})
+  }
+}
+
+export function editUser(uid, key, invest){
+  return(dispatch) => {
+    const fb = firebase.database().ref('/user/' + uid).update({invested: invested + invest})
+    try{
+      const fb = firebase.database().ref('/user/' + uid).child('couriers')
+      fb.push({key: key}).then(console.log('TRY'));
+    }
+    catch {
+      const fb = firebase.database().ref('/user/' + uid)
+      fb.update({couriers: [key]}).then(console.log(fb.child(couriers)));
+    }
   }
 }
 

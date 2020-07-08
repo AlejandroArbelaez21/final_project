@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Alert, View, Text, StyleSheet, TextInput, ScrollView } from 'react-native';
-import {editBlog} from '../../firebase/actions';
+import {editBlog, editUser} from '../../firebase/actions';
 import {connect} from 'react-redux';
 import GradientButton from 'react-native-gradient-buttons';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import firebase from 'firebase';
 
 class Edit extends Component {
   state = {
@@ -16,7 +18,14 @@ class Edit extends Component {
     revenue: this.props.navigation.state.params.motoInfo.revenue,
     time: this.props.navigation.state.params.time,
     rate: this.props.navigation.state.params.rate,
+    currentUser: null,
     invest: ''
+  }
+
+  componentDidMount(){
+    const { currentUser } = firebase.auth();
+    this.setState({ currentUser });
+    //Calls the function that read the info of the courier
   }
 
   invested(title, content){
@@ -32,6 +41,7 @@ class Edit extends Component {
     this.invested(this.state.title, this.state.invest);
     const result = parseInt(this.state.content) + parseInt(this.state.invest);
     this.props.editBlog(this.state.title, result, this.state.key, this.state.description);
+    this.props.editUser(this.state.currentUser.uid, this.state.key, this.state.description);
     
     this.setState({
       title: "",
@@ -60,16 +70,26 @@ currencyFormat = (num) => {
     return (
       <View style={styles.container}>
         <ScrollView>
-          <View style={{flex: 1, justifyContent: 'center'}}>
+          <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
             <Text style={[styles.h1, {marginBottom: 20}]}>{this.state.title}</Text>
             <Text style={[styles.h2, {marginBottom: 10}]}>"{this.state.description}"</Text>
-            <Text style={{color:'black', margin:10, textAlign:'center', fontSize:20, fontWeight:'bold'}}>Motorcycle: {this.state.motoBrand} {this.state.motoName}</Text>
+            <Icon
+                name="motorcycle"
+                color='#929292'
+                size={30}
+            />
+            <Text style={{color:'black', margin:10, textAlign:'center', fontSize:20, fontWeight:'bold'}}>{this.state.motoBrand} {this.state.motoName}</Text>
+            <Icon
+                name="money"
+                color='#929292'
+                size={30}
+            />
             <Text style={{color:'black', margin:10, textAlign:'center', fontSize:20, fontWeight:'bold'}}>Goal: {this.currencyFormat(parseInt(this.state.motoPrice))}</Text>
             <Text style={{color:'#fc6552', margin:10, textAlign:'center', fontSize:20, fontWeight:'bold'}}>Money collected: {this.currencyFormat(parseInt(this.state.motoPrice) - parseInt(this.state.content))}</Text>
             <Text style={[styles.h2]}></Text>
             <Text style={[styles.h2]}>This person has {this.state.time} years in Rappi, with a rate of {this.state.rate}</Text>
             <Text style={[styles.h2]}></Text>
-            <Text style={styles.h2}>Your income for invest in this person will be</Text>
+            <Text style={styles.h2}>Income rate:</Text>
             <Text style={{color:'#5de143', margin:10, textAlign:'center', fontSize:25, fontWeight:'bold'}}>{(this.state.revenue / 2).toFixed(2)}%</Text>
           </View>
           <View style={{flex: 1}}>
@@ -111,4 +131,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default connect(null, {editBlog})(Edit);
+export default connect(null, {editBlog, editUser})(Edit);

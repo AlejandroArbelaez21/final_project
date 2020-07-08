@@ -153,6 +153,7 @@ class Post extends Component {
 
   render() {
     const { checked } = this.state;
+
     return (
       <View style={styles.container}>
           <Popup/>

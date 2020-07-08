@@ -10,11 +10,11 @@ class Main extends Component {
   }
 
   LoginUser = () => {
-    this.props.navigation.navigate('LoginUser')
+    this.props.navigation.navigate('LoadingScreenUser')
   }
 
   LoginCourier = () => {
-    this.props.navigation.navigate('LoginCourier')
+    this.props.navigation.navigate('LoadingScreenCourier')
   }
 
   render() {
@@ -25,7 +25,7 @@ class Main extends Component {
           <View style={styles.button}>
             <ImageBackground source={require('../components/resources/images/user.jpg')}
             style={{flex: 1, width: '100%', justifyContent:'center'}}>
-              <Text style={styles.text}>Rappi User</Text>
+              <Text style={styles.text}>Rappi Usuario</Text>
             </ImageBackground>
           </View>
         </TouchableOpacity>
@@ -33,7 +33,7 @@ class Main extends Component {
           <View style={styles.button}>
             <ImageBackground source={require('../components/resources/images/courier.jpeg')}
             style={{flex: 1, width: '100%', justifyContent:'center'}}>
-              <Text style={styles.text}>Rappi Courier</Text>
+              <Text style={styles.text}>Rappi Tendero</Text>
             </ImageBackground>
           </View>
         </TouchableOpacity>

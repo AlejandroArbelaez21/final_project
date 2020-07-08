@@ -2,13 +2,11 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import Main from './Main';
 import User from './User';
-import CourierSig from './CourierSig';
-import CourierLog from './CourierLog';
-import LoginScreenUser from '../components/screens/LoginScreenUser';
-import LoginScreenCourier from '../components/screens/LoginScreenCourier';
-import SplashScreenUser from '../components/users/SplashScreen';
-import SplashScreenCourierSig from '../components/couriers/SplashScreenSig';
-import SplashScreenCourierLog from '../components/couriers/SplashScreenLog';
+import Courier from './Courier';
+import LoginScreenCourier from '../components/couriers/LoginScreen';
+import LoadingScreenCourier from '../components/couriers/LoadingScreen';
+import LoginScreenUser from '../components/users/LoginScreen';
+import LoadingScreenUser from '../components/users/LoadingScreen';
 
 //Stack where the login screens and the started code of courier and user are located
 const LoginNavigator = createStackNavigator({
@@ -20,36 +18,32 @@ const LoginNavigator = createStackNavigator({
       headerShown: false
     }
   },
-  LoginUser : {
+  LoginScreenUser : {
     screen : LoginScreenUser,
     navigationOptions : {
-      title : 'Go Back',
+      title : 'Atrás',
       headerShown: true
     }
   },
-  LoginCourier : {
-    screen : LoginScreenCourier,
+  LoadingScreenUser : {
+    screen : LoadingScreenUser,
     navigationOptions : {
       title : 'Go Back',
-      headerShown: true,
+      headerShown: false
     }
   },
-  SplashUser:{
-    screen: SplashScreenUser,
-    navigationOptions:{
-        headerShown: false,
+  LoginScreenCourier : {
+    screen : LoginScreenCourier,
+    navigationOptions : {
+      title : 'Atrás',
+      headerShown: true
     }
   },
-  SplashCourierSig:{
-    screen: SplashScreenCourierSig,
-    navigationOptions:{
-        headerShown: false,
-    }
-  },
-  SplashCourierLog:{
-    screen: SplashScreenCourierLog,
-    navigationOptions:{
-        headerShown: false,
+  LoadingScreenCourier : {
+    screen : LoadingScreenCourier,
+    navigationOptions : {
+      title : 'Go Back',
+      headerShown: false
     }
   },
   User : {
@@ -59,15 +53,8 @@ const LoginNavigator = createStackNavigator({
       headerShown: false,
     }
   },
-  CourierSig : {
-    screen : CourierSig,
-    navigationOptions : {
-      title : 'Login',
-      headerShown: false,
-    }
-  },
-  CourierLog : {
-    screen : CourierLog,
+  Courier : {
+    screen : Courier,
     navigationOptions : {
       title : 'Login',
       headerShown: false,
