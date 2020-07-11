@@ -156,7 +156,7 @@ class Post extends Component {
 
     return (
       <View style={styles.container}>
-          <Popup/>
+        <Popup/>
         <ScrollView>
         <View style={{flex: 1, alignItems:'center'}}>
           <Text style={styles.h1}>Your personal info:</Text>

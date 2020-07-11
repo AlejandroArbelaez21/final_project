@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { View, Modal, StyleSheet, Text } from 'react-native';
 import GradientButton from 'react-native-gradient-buttons';
 import Info from './Info';
+import * as Animatable from 'react-native-animatable';
+
 
 //Shows term and conditions in a popup before regristation
 class Popup extends Component {
@@ -14,11 +16,13 @@ class Popup extends Component {
   
   render() {
     return (
-
         <Modal
         transparent={true}
         visible={this.state.show}>
-          <View style={styles.modalOutside}>
+          <Animatable.View style={styles.modalOutside}
+          animation="bounceIn"
+          duraton={10000}
+          delay={500}>
             <View style={styles.modalInside}>
               <Info/>
               <GradientButton
@@ -29,7 +33,7 @@ class Popup extends Component {
               textStyle={{ fontWeight: 'bold' }}
               onPressAction={() => {this.setState({show:false})}}/>
             </View>
-          </View>
+          </Animatable.View>
         </Modal>
 
     );
@@ -44,14 +48,17 @@ const styles = StyleSheet.create({
   },
   modalOutside: {
     flex: 1,
-    backgroundColor: '#000000aa'
+    backgroundColor: '#FFFFFF50',
   },
   modalInside: {
     flex: 1,
     backgroundColor: 'white',
     margin: 10,
     padding: 10,
-    borderRadius: 10
+    borderRadius: 10,
+    borderWidth: 0.1,
+    borderColor: 'gray',
+    elevation: 10
   }
 });
 export default Popup

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ImageBackground, StatusBar, TouchableOpacity } from 'react-native';
+import * as Animatable from 'react-native-animatable';
+
 
 //Choose profile type
 class Main extends Component {
@@ -20,22 +22,30 @@ class Main extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar backgroundColor='black' barStyle="default" hidden={false} translucent={false}/>
+        <StatusBar backgroundColor='#ff2426' barStyle="light-content"/>
         <TouchableOpacity onPress={this.LoginUser} style={styles.button}>
-          <View style={styles.button}>
+          <Animatable.View style={styles.button}
+            animation="bounceIn"
+            duraton={10000}
+            delay={500}
+          >
             <ImageBackground source={require('../components/resources/images/user.jpg')}
             style={{flex: 1, width: '100%', justifyContent:'center'}}>
               <Text style={styles.text}>Rappi Usuario</Text>
             </ImageBackground>
-          </View>
+          </Animatable.View>
         </TouchableOpacity>
         <TouchableOpacity onPress={this.LoginCourier} style={styles.button}>
-          <View style={styles.button}>
+          <Animatable.View style={styles.button}
+              animation="bounceIn"
+              duraton={10000}
+              delay={1000}
+          >
             <ImageBackground source={require('../components/resources/images/courier.jpeg')}
             style={{flex: 1, width: '100%', justifyContent:'center'}}>
               <Text style={styles.text}>Rappi Tendero</Text>
             </ImageBackground>
-          </View>
+          </Animatable.View>
         </TouchableOpacity>
       </View>
     );

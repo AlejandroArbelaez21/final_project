@@ -3,11 +3,6 @@ import { ScrollView, Text, StyleSheet } from 'react-native';
 
 //Shows the terms and conditions for courier
 class Info extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
 
   render() {
     return (

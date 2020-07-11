@@ -69,7 +69,7 @@ currencyFormat = (num) => {
   render() {
     return (
       <View style={styles.container}>
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
             <Text style={[styles.h1, {marginBottom: 20}]}>{this.state.title}</Text>
             <Text style={[styles.h2, {marginBottom: 10}]}>"{this.state.description}"</Text>
