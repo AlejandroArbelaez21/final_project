@@ -137,7 +137,7 @@ const LoginScreen = ({navigation}) => {
    
     return(
         <View style={styles.container}>
-            <StatusBar backgroundColor='#ff2426' barStyle="light-content"/>
+            <StatusBar backgroundColor='#ff441f' barStyle="light-content"/>
             <View style={styles.header}>
                 <Animatable.Image 
                     animation="bounceIn"
@@ -242,7 +242,7 @@ const LoginScreen = ({navigation}) => {
                     <TouchableOpacity
                         onPress={() => Linking.openURL('http://bit.ly/2ozOyOF')}
                     >
-                        <Text style={[styles.textSignUp, { color: '#ff2426' }]}>¿Aún no eres Rappi tendero? Regístrate</Text>
+                        <Text style={[styles.textSignUp, { color: '#ff441f' }]}>¿Aún no eres Rappi tendero? Regístrate</Text>
                     </TouchableOpacity>
                 </View>
             </Animatable.View>

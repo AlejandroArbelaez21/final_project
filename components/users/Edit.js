@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Alert, View, Text, StyleSheet, TextInput, ScrollView } from 'react-native';
+import { TouchableOpacity, Alert, View, Text, StyleSheet, TextInput, ScrollView } from 'react-native';
 import {editBlog, editUser} from '../../firebase/actions';
 import {connect} from 'react-redux';
-import GradientButton from 'react-native-gradient-buttons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import firebase from 'firebase';
 
@@ -18,14 +17,19 @@ class Edit extends Component {
     revenue: this.props.navigation.state.params.motoInfo.revenue,
     time: this.props.navigation.state.params.time,
     rate: this.props.navigation.state.params.rate,
-    currentUser: null,
     invest: ''
   }
 
-  componentDidMount(){
+  async componentDidMount(){
     const { currentUser } = firebase.auth();
-    this.setState({ currentUser });
+    this.userId = await this.getUserId(currentUser.uid);
     //Calls the function that read the info of the courier
+  }
+
+  userId = '';
+
+  getUserId = async (userId) => {
+    return userId
   }
 
   invested(title, content){
@@ -40,8 +44,7 @@ class Edit extends Component {
     } else {
     this.invested(this.state.title, this.state.invest);
     const result = parseInt(this.state.content) + parseInt(this.state.invest);
-    this.props.editBlog(this.state.title, result, this.state.key, this.state.description);
-    this.props.editUser(this.state.currentUser.uid, this.state.key, this.state.description);
+    this.props.editBlog(this.state.title, result, this.state.key, this.userId, this.state.invest);
     
     this.setState({
       title: "",
@@ -101,9 +104,13 @@ currencyFormat = (num) => {
                       onChangeText={(text)=> this.onChanged(text)}
                       maxLength={6}/>
           </View>
-          <View style={{flex: 0.5, justifyContent: 'flex-end'}}>
-            <GradientButton GradientButton style={{alignSelf:'center', padding: 5, width:'103%'}} gradientBegin='#ff9259' gradientEnd="#ff2426" text="Invest" textStyle={{ fontWeight: 'bold' }}
-            onPressAction={this.submit}/>
+          <View style={styles.button}>
+              <TouchableOpacity
+                  style={styles.signIn}
+                  onPress={this.submit}
+              >
+                  <Text style={[styles.textSign, { color:'#fff' }]}>Invertir</Text>
+              </TouchableOpacity>
           </View>
         </ScrollView>
       </View>
@@ -129,6 +136,30 @@ const styles = StyleSheet.create({
       fontSize: 15,
       fontWeight: 'bold',
     },
+    button: {
+      alignItems: 'center',
+      marginTop: 10,
+      marginBottom: 10,
+  },
+  signIn: {
+      shadowColor: 'rgba(0,0,0, .4)', // IOS
+      shadowOffset: { height: 1, width: 1 }, // IOS
+      shadowOpacity: 1, // IOS
+      shadowRadius: 1, //IOS
+      backgroundColor: "#ff2426",
+      width: '100%',
+      height: 50,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: 10,
+      borderColor: 'gray',
+      borderWidth: 0.1,
+      elevation: 8
+  },
+  textSign: {
+    fontSize: 18,
+    fontWeight: 'bold'
+  },
 })
 
 export default connect(null, {editBlog, editUser})(Edit);

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Alert, TouchableHighlight, TextInput, View, Text, StyleSheet, ImageBackground, Image, ScrollView } from 'react-native';
+import { TouchableOpacity, Alert, TouchableHighlight, TextInput, View, Text, StyleSheet, ImageBackground, Image, ScrollView } from 'react-native';
 import {getMotos, postBlogs} from '../../firebase/actions';
 import {connect} from 'react-redux';
-import GradientButton from 'react-native-gradient-buttons';
 import Popup from './Popup';
 import { RadioButton } from 'react-native-paper';
 import _ from 'lodash';
@@ -41,8 +40,6 @@ class Post extends Component {
     //put the info of the moto in the courier as a key
     this.setState({motoInfo: item});
   }
-    
-
 
   _getImage = async (id) => {
     //Save the profile image url in a variable
@@ -60,6 +57,8 @@ class Post extends Component {
   }
 
   componentDidMount(){
+    console.log('-------------------')
+    //console.log(data);
     //Call the function that shows the motos in database
     this.props.getMotos()
   }
@@ -157,9 +156,9 @@ class Post extends Component {
     return (
       <View style={styles.container}>
         <Popup/>
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{flex: 1, alignItems:'center'}}>
-          <Text style={styles.h1}>Your personal info:</Text>
+          <Text style={styles.h1}>Tu información personal</Text>
           <TextInput
           style={{padding: 10, width: '90%', height: 40, borderColor: 'gray', borderWidth: 1}}
           placeholder="Your id"
@@ -244,13 +243,14 @@ class Post extends Component {
           }
           </View>
           </ScrollView>
-        <GradientButton 
-        style={{marginTop: 20, alignSelf:'center', padding: 5, width:'103%'}} 
-        gradientBegin='#ff9259' 
-        gradientEnd="#ff2426" 
-        text="Submit" 
-        textStyle={{ fontWeight: 'bold' }} 
-        onPressAction={this.submit}/>
+          <View style={styles.button}>
+                    <TouchableOpacity
+                        style={styles.signIn}
+                        onPress={this.submit}
+                    >
+                        <Text style={[styles.textSign, { color:'#fff' }]}>Finalizar registro</Text>
+                    </TouchableOpacity>
+                </View>
       </View>
     );
   }
@@ -276,6 +276,30 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: 'bold',
     color: '#fc6552'
+  },
+  button: {
+    alignItems: 'center',
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  signIn: {
+    shadowColor: 'rgba(0,0,0, .4)', // IOS
+    shadowOffset: { height: 1, width: 1 }, // IOS
+    shadowOpacity: 1, // IOS
+    shadowRadius: 1, //IOS
+    backgroundColor: "#ff2426",
+    width: '100%',
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    borderColor: 'gray',
+    borderWidth: 0.1,
+    elevation: 8
+  },
+  textSign: {
+    fontSize: 18,
+    fontWeight: 'bold'
   },
 })
 function mapStateToProps(state){

@@ -5,7 +5,7 @@ export default function (state={}, action){
             console.log('===', action.payload)
             return {
                 ...state,
-                blogList: action.payload
+                blogList: action.payload,
             }
         default:
             return state

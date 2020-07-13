@@ -9,7 +9,7 @@ export default class FirstSplashScreen extends Component{
             const toStack = await this.props.navigation.navigate(path);
         }
         catch {
-            console.log('Error while charging the app')
+            console.log('Starting the app')
         }
     }
 

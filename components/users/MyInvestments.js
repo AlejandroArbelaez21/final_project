@@ -3,12 +3,32 @@ import { View, Text, StyleSheet, TouchableHighlight, ImageBackground, Image, Fla
 import {getBlogs, deleteBlog} from '../../firebase/actions';
 import {connect} from 'react-redux';
 import _ from 'lodash';
+import firebase from 'firebase';
 
 class MyInvestments extends Component {
 
-  componentDidMount(){
+  async componentDidMount(){
+    this.investedAmount = await this.getInvestedMoney(firebase.auth().currentUser.uid);
+    this.earnedAmount = await this.getEarnedMoney(firebase.auth().currentUser.uid);
     //Calls the function that read the info of the courier
-    this.props.getBlogs()
+    this.props.getBlogs();
+  } 
+
+  investedAmount = '-'
+  earnedAmount = '-'
+
+  getInvestedMoney = async (userId) => {
+    return firebase.database().ref('/user/' + userId).once('value').then(function(snapshot) {
+      const invested = (snapshot.val() && snapshot.val().invested) || '0';
+      return invested
+    });
+  }
+
+  getEarnedMoney = async (userId) => {
+    return firebase.database().ref('/user/' + userId).once('value').then(function(snapshot) {
+      const earned = (snapshot.val() && snapshot.val().earned) || '0';
+      return earned
+    });
   }
 
   res = (a, b) => {
@@ -24,15 +44,31 @@ class MyInvestments extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={{flexDirection: 'row', marginBottom: 5, marginTop:5, height: 80, marginLeft:5, width:'98%', elevation:8, flex: 0.2, borderRadius:15, backgroundColor: '#ff441f'}}>
-          <View style={{flex: 1, justifyContent:'center', alignItems:'center'}}>
-            <Text style={{textAlign: 'center', textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: 1, height: 1},
-                      textShadowRadius: 10, fontSize:25, marginBottom: 2, fontWeight:'bold', color:'#fff'}}>Your balance:</Text>
+        <View style={styles.balanceContainer}>
+          <View style={{flex: 1, justifyContent:'center'}}>
+            <Text style={styles.balanceTextTitle}>Tu balance</Text>
           </View>
-          <View style={{flex: 0.7, justifyContent:'center', alignItems:'center'}}>
-            <Text style={{textAlign: 'center', textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: 1, height: 1},
-                      textShadowRadius: 10, fontSize:35, marginBottom: 2, fontWeight:'bold', color:'#fff'}}>$0</Text>
+          <View style={{flex: 1, justifyContent:'center'}}>
+            <View style={{flexDirection: 'row'}}>
+              <View style={styles.balanceRowContainer}>
+                <Text style={[styles.balanceText, {textAlign: 'right'}]}>Invertido</Text>
+              </View>
+              <View style={styles.balanceRowContainer}>
+                <Text style={styles.balanceText}>{this.currencyFormat(parseInt(this.investedAmount))}</Text>
+              </View>
+            </View>
           </View>
+          <View style={{flex: 1, justifyContent:'center'}}>
+            <View style={{flexDirection: 'row'}}>
+              <View style={styles.balanceRowContainer}>
+                <Text style={[styles.balanceText, {textAlign: 'right'}]}>Ganancias</Text>
+              </View>
+              <View style={styles.balanceRowContainer}>
+                <Text style={styles.balanceText}>{this.currencyFormat(parseInt(this.earnedAmount))}</Text>
+              </View>
+            </View>
+          </View>
+          
         </View>
           {            
             this.props.loadingReducer ? <Image style={{width: 100, height:100}} source={require('../resources/images/load.gif')}/> :
@@ -44,7 +80,7 @@ class MyInvestments extends Component {
             showsVerticalScrollIndicator={false}
             renderItem={({item}) => {
               return (
-                <View style={{marginTop:25, marginLeft:5, width:'98%', elevation:7, flex: 0.97, borderRadius:15, backgroundColor: '#fff', borderColor:'#ff2426'}}>
+                <View style={{marginBottom: 10, marginTop:25, marginLeft:5, width:'98%', elevation:7, flex: 0.97, borderRadius:15, backgroundColor: '#fff', borderColor:'#ff2426'}}>
                   <ImageBackground 
                   source={{uri: item.image}}
                   style={{flex: 0.9, marginTop:15, marginBottom:15, width: '100%', justifyContent:'center'}}>
@@ -83,7 +119,42 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#ffffff',
         padding: 10
-    }
+    },
+    balanceContainer: {
+      justifyContent:'center', 
+      marginBottom: 5, 
+      marginTop:5, 
+      marginLeft:5, 
+      width:'98%', 
+      elevation:8, 
+      flex: 0.2, 
+      borderRadius:15, 
+      backgroundColor: '#ff441f'
+    },
+    balanceTextTitle: {
+      textAlign: 'center', 
+      textShadowColor: 'rgba(0, 0, 0, 1)', 
+      textShadowOffset: {width: 1, height: 1},
+      textShadowRadius: 10, 
+      fontSize:25, 
+      marginBottom: 2, 
+      fontWeight:'bold', 
+      color:'#fff'
+    },
+    balanceRowContainer: {
+      flex: 1, 
+      justifyContent:'center', 
+      margin: 5
+    },
+    balanceText: {
+      textShadowColor: 'rgba(0, 0, 0, 1)', 
+      textShadowOffset: {width: 1, height: 1},
+      textShadowRadius: 10, 
+      fontSize:23, 
+      marginBottom: 2, 
+      fontWeight:'bold', 
+      color:'#fff'
+  }
 })
 
 function mapStateToProps(state){

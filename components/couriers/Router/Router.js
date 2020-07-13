@@ -4,15 +4,17 @@ import Post from '../Post';
 import Routes from '../Routes';
 import Motos from '../Motos';
 
+
 //Stack that contains all the courier screens
 const Router = createStackNavigator({
   Post : {
     screen : Post,
     navigationOptions: {
-      title: 'Registration',
+      title: 'Registro',
       headerTitleAlign: 'center',
       headerShown: true
-    }
+    },
+    params: { user: Router },
   },
   Motos : {
     screen : Motos,
@@ -30,7 +32,10 @@ const Router = createStackNavigator({
       headerShown: false
     }
   },
-
 });
+
+console.log('------------');
+//console.log(Router.props);
+console.log('------------');
 
 export default createAppContainer(Router)

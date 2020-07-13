@@ -184,7 +184,7 @@ const LoginScreen = () => {
 
     return (
         <View style={styles.container}>
-            <StatusBar backgroundColor='#ff2426' barStyle="light-content"/>
+            <StatusBar backgroundColor='#ff441f' barStyle="light-content"/>
             <View style={styles.header}>
                 <Animatable.Image 
                     animation="bounceIn"
@@ -294,7 +294,7 @@ const LoginScreen = () => {
                     <TouchableOpacity
                         onPress={() => Linking.openURL('https://www.rappi.com.co/login')}
                     >
-                        <Text style={[styles.textSignUp, { color: '#ff2426' }]}>¿No tienes cuenta? Regístrate en Rappi</Text>
+                        <Text style={[styles.textSignUp, { color: '#ff441f' }]}>¿No tienes cuenta? Regístrate en Rappi</Text>
                     </TouchableOpacity>
                 </View>
             </Animatable.View>
