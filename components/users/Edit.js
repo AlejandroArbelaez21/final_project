@@ -34,13 +34,13 @@ class Edit extends Component {
 
   invested(title, content){
     //Shows an alert in screen after the invest
-    Alert.alert("You have invested $" + content + ' in ' + title + '!')
+    Alert.alert("¡Has invertido $" + content + ' en ' + title + '!')
   }
 
   submit = () => {
     //Saves the changes after the invest
     if(parseInt(this.state.invest) < 20000) {
-       Alert.alert('Your invest should be $20.000 or higher');
+       Alert.alert('Tu inversión debe ser mayor a $20.000');
     } else {
     this.invested(this.state.title, this.state.invest);
     const result = parseInt(this.state.content) + parseInt(this.state.invest);
@@ -87,16 +87,16 @@ currencyFormat = (num) => {
                 color='#929292'
                 size={30}
             />
-            <Text style={{color:'black', margin:10, textAlign:'center', fontSize:20, fontWeight:'bold'}}>Goal: {this.currencyFormat(parseInt(this.state.motoPrice))}</Text>
-            <Text style={{color:'#fc6552', margin:10, textAlign:'center', fontSize:20, fontWeight:'bold'}}>Money collected: {this.currencyFormat(parseInt(this.state.motoPrice) - parseInt(this.state.content))}</Text>
+            <Text style={{color:'black', margin:10, textAlign:'center', fontSize:20, fontWeight:'bold'}}>Meta: {this.currencyFormat(parseInt(this.state.motoPrice))}</Text>
+            <Text style={{color:'#fc6552', margin:10, textAlign:'center', fontSize:20, fontWeight:'bold'}}>Acumulado: {this.currencyFormat(parseInt(this.state.motoPrice) - parseInt(this.state.content))}</Text>
             <Text style={[styles.h2]}></Text>
-            <Text style={[styles.h2]}>This person has {this.state.time} years in Rappi, with a rate of {this.state.rate}</Text>
+            <Text style={[styles.h2]}>Esta persona lleva {this.state.time} años en Rappi, con un puntaje de {this.state.rate}</Text>
             <Text style={[styles.h2]}></Text>
-            <Text style={styles.h2}>Income rate:</Text>
+            <Text style={styles.h2}>Tasa de ganancia:</Text>
             <Text style={{color:'#5de143', margin:10, textAlign:'center', fontSize:25, fontWeight:'bold'}}>{(this.state.revenue / 2).toFixed(2)}%</Text>
           </View>
           <View style={{flex: 1}}>
-            <Text style={styles.h1}>How much do you want to invest?</Text>
+            <Text style={styles.h1}>¿Cuánto quieres invertir?</Text>
             <TextInput keyboardType = 'number-pad'
                       style={{marginBottom: 20, marginTop: 20, height: 40, borderColor: 'gray', borderWidth: 1, padding: 5}}
                       placeholder="min. $20.000"

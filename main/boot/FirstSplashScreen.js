@@ -6,7 +6,7 @@ export default class FirstSplashScreen extends Component{
 
     async goToScreen(path){
         try {
-            const toStack = await this.props.navigation.navigate(path);
+            await this.props.navigation.navigate(path);
         }
         catch {
             console.log('Starting the app')

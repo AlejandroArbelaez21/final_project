@@ -24,7 +24,7 @@ export function getBlogs(){
 
 export async function postBlogs(id, title, age, content, description, image, motoInfo, time, rate){
     return(dispatch) => {
-        firebase.database().ref('/courier').push({id, title, age, content, description, image, motoInfo, time, rate})
+        firebase.database().ref('/courier/' + id).set({title, age, content, description, image, motoInfo, time, rate})
     }
 }
 

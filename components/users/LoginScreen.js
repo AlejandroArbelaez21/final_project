@@ -383,7 +383,12 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         borderColor: 'gray',
         borderWidth: 0.1,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        shadowColor: 'rgba(0,0,0, .4)', // IOS
+        shadowOffset: { height: 1, width: 1 }, // IOS
+        shadowOpacity: 1, // IOS
+        shadowRadius: 1, //IOS
+        elevation: 5
       },
     textSign: {
         fontSize: 18,

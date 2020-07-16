@@ -44,7 +44,7 @@ class Blogs extends Component {
                   style={{flex: 0.9, marginTop:15, marginBottom:15, width: '100%', justifyContent:'center'}}>
                     <View style={{padding:1, justifyContent:'flex-end'}}>
                       <Text style={{textAlign: 'center', textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: 1, height: 1},
-                      textShadowRadius: 10, fontSize:25, marginBottom: 2, fontWeight:'bold', color:'#5de143'}}>{((item.motoInfo.revenue)/2).toFixed(2)}% of revenue</Text>
+                      textShadowRadius: 10, fontSize:25, marginBottom: 2, fontWeight:'bold', color:'#5de143'}}>{((item.motoInfo.revenue)/2).toFixed(2)}% de ganancia</Text>
                     </View>
                   <TouchableHighlight style={{padding:10, flex:1, justifyContent:'flex-end', marginBottom: 2}} onPress={() => this.props.navigation.navigate('Edit', {...item})}>
                     <View style={{padding:1, justifyContent:'flex-end'}}>
@@ -57,9 +57,9 @@ class Blogs extends Component {
                       <Text style={{textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: 1, height: 1},
                       textShadowRadius: 10, fontSize:17, marginBottom: 10, fontWeight:'bold', color:'white'}}>{item.description}</Text>
                       <Text style={{textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: 1, height: 1},
-                      textShadowRadius: 10, fontSize:19, lineHeight:30, color:'white', fontWeight:'bold'}}>Goal: {this.currencyFormat(parseInt(item.motoInfo.motoPrice))}</Text>
+                      textShadowRadius: 10, fontSize:19, lineHeight:30, color:'white', fontWeight:'bold'}}>Meta: {this.currencyFormat(parseInt(item.motoInfo.motoPrice))}</Text>
                       <Text style={{textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: 1, height: 1},
-                      textShadowRadius: 10, fontSize:19, lineHeight:30, color:'white', fontWeight:'bold'}}>Current amount: {this.currencyFormat(parseInt(item.content))}</Text>
+                      textShadowRadius: 10, fontSize:19, lineHeight:30, color:'white', fontWeight:'bold'}}>Acumulado: {this.currencyFormat(parseInt(item.content))}</Text>
                     </View>
                   </TouchableHighlight>
                   </ImageBackground>

@@ -7,7 +7,7 @@ class Info extends Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-        <Text style={styles.h1}> Terms and conditions for Couriers</Text>
+        <Text style={styles.h1}> Términos y condiciones para Rappi Tenderos</Text>
         <Text style={styles.h2}>The standard Lorem Ipsum passage, used since the 1500s</Text>
         <Text style={styles.text}> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
             ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris

@@ -15,6 +15,7 @@ import * as Animatable from 'react-native-animatable';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import { useTheme } from '@react-navigation/native';
+import firebase from 'firebase';
 
 const LoginScreen = ({navigation}) => {
 
@@ -27,6 +28,7 @@ const LoginScreen = ({navigation}) => {
         secureTextEntry: true,
         isValidUser: true,
         isValidPassword: true,
+        errorMessage: null
     });
 
     const textInputChange = (val) => {
@@ -84,14 +86,41 @@ const LoginScreen = ({navigation}) => {
         }
     }
 
-    getRol = async (username, password) => {
+    const handleLogin = async (email, password, aux) => {
+        try {
+            const baseUrl = 'http://microservices.dev.rappi.com/api/rt-auth-helper/user/type?email=' + email;
+            const response = await fetch(baseUrl);
+            const rappiData = await response.json();
+            const role = rappiData.user_type;
+            if (role === 'courier'){
+                firebase
+                .auth()
+                .createUserWithEmailAndPassword(email, password)
+                .then(navigation.navigate('Courier', {aux}))
+                .catch(function(error) {
+                    // Handle Errors here.
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    // ...
+                  });
+            } else {
+                Alert.alert('Debes ser Rappi Tendero para ingresar');
+            }
+        }
+        catch {
+            Alert.alert('Bebé, se le olvidó el correo');
+            console.log('There has been a problem with your fetch operation');
+        }
+    }
+
+    const getRol = async (username, password, aux) => {
         try {      
             const baseUrl = 'http://microservices.dev.rappi.com/api/rt-auth-helper/user/type?email=' + username;
             const response = await fetch(baseUrl);
             const rappiData = await response.json();
             const role = rappiData.user_type;
             if (role === 'courier'){
-                await logCourier(username, password);
+                await logCourier(username, password, aux);
             } else {
                 Alert.alert('Debes ser Rappi Tendero para ingresar');
             }
@@ -102,7 +131,7 @@ const LoginScreen = ({navigation}) => {
         }
     }
 
-    logCourier = async (usernameRappi, passwordRappi) => {
+    const logCourier = async (email, passwordRappi, aux) => {
         try {
             const baseUrl = 'http://microservices.dev.rappi.com/api/login/storekeeper';
             const response = await fetch(baseUrl, { 
@@ -115,7 +144,7 @@ const LoginScreen = ({navigation}) => {
                 body: JSON.stringify({
                     client_secret: "W8dOKF1mdHaG9wBNyoOCEBgHajO66GEl81lTDu2P",
                     client_id: "74HzD01JbhZ44iE1kh7Gt6dfNjEKrtWiz0FqTUDQ",
-                    username: usernameRappi,
+                    username: email,
                     password: passwordRappi,
                     scope:"all"
                 })
@@ -123,7 +152,16 @@ const LoginScreen = ({navigation}) => {
             const rappiData = await response.json();
             const profile = rappiData.storekeeper_type;
             if(profile === 'rappitendero'){
-                navigation.navigate('Courier', { rappiData });
+                firebase
+                .auth()
+                .signInWithEmailAndPassword(email, passwordRappi)
+                .then(navigation.navigate('Courier', {aux}))
+                .catch(function(error) {
+                    // Handle Errors here.
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    // ...
+                  });
             } else {
                 Alert.alert('Email o contraseña incorrectos. Intenta nuevamente');
                 console.log('wrong email or password');
@@ -134,7 +172,8 @@ const LoginScreen = ({navigation}) => {
             console.log('There has been a problem with your fetch operation');
         }
     }
-   
+
+  
     return(
         <View style={styles.container}>
             <StatusBar backgroundColor='#ff441f' barStyle="light-content"/>
@@ -233,12 +272,18 @@ const LoginScreen = ({navigation}) => {
                 <View style={styles.button}>
                     <TouchableOpacity
                         style={styles.signIn}
-                        onPress={() => {getRol(data.username, data.password)}}
+                        onPress={() => {getRol(data.username, data.password, 'login')}}
                     >
                         <Text style={[styles.textSign, { color:'#fff' }]}>Entrar</Text>
                     </TouchableOpacity>
+                    <TouchableOpacity
+                        style={[styles.signIn, {marginTop: 10}]}
+                        onPress={() => {handleLogin(data.username, data.password, 'post')}}
+                    >
+                        <Text style={[styles.textSign, { color:'#fff' }]}>Registrarse a la app</Text>
+                    </TouchableOpacity>
                 </View>
-                <View style={{flex: 0.8, justifyContent: 'flex-end', alignContent: 'center'}}>
+                <View style={{marginTop: 20, flex: 0.8, justifyContent: 'flex-end', alignContent: 'center'}}>
                     <TouchableOpacity
                         onPress={() => Linking.openURL('http://bit.ly/2ozOyOF')}
                     >
@@ -322,7 +367,7 @@ const styles = StyleSheet.create({
     },
     button: {
         alignItems: 'center',
-        marginTop: 50
+        marginTop: 30
     },
     signIn: {
         backgroundColor: "#ff2426",
@@ -332,7 +377,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 10,
         borderColor: 'gray',
-        borderWidth: 0.1
+        borderWidth: 0.1,
+        shadowColor: 'rgba(0,0,0, .4)', // IOS
+        shadowOffset: { height: 1, width: 1 }, // IOS
+        shadowOpacity: 1, // IOS
+        shadowRadius: 1, //IOS
+        elevation: 5
         },
     textSign: {
         fontSize: 18,

@@ -9,7 +9,7 @@ import {createAppContainer} from 'react-navigation';
 
 //This is a stack that contains all the screens related to the courier
 const TenStack = createStackNavigator({
-    Profile: {
+    Perfil: {
         screen: Profile,
         navigationOptions: () => ({
             headerTitleAlign: "center",
@@ -21,7 +21,7 @@ const TenStack = createStackNavigator({
 })
 
 const BottomTab = createBottomTabNavigator({
-    Profile: {
+    Perfil: {
         screen: TenStack,
         navigationOptions: () => ({
             tabBarOptions: {
@@ -59,7 +59,7 @@ const BottomTab = createBottomTabNavigator({
             )
         })
     },
-    LogOut: {
+    Salir: {
         screen: LogOut,
         navigationOptions: () => ({
             tabBarOptions: {

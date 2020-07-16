@@ -10,7 +10,7 @@ import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {createAppContainer} from 'react-navigation';
 
 const Stack = createStackNavigator({
-    Invest: {
+    Invertir: {
         screen: Blogs,
         navigationOptions: () => ({
             headerTitleAlign: "center",
@@ -28,7 +28,7 @@ const Stack = createStackNavigator({
 })
 
 const BottomTab = createBottomTabNavigator({
-    Invest: {
+    Invertir: {
         screen: Stack,
         navigationOptions: () => ({
         tabBarOptions: {
@@ -48,7 +48,7 @@ const BottomTab = createBottomTabNavigator({
         )
     })
     },
-    Investments: {
+    Balance: {
         screen: MyInvestments,
         navigationOptions: () => ({
             tabBarOptions: {
@@ -88,7 +88,7 @@ const BottomTab = createBottomTabNavigator({
             )
         })
     },
-    LogOut: {
+    Salir: {
         screen: LogOut,
         navigationOptions: () => ({
             tabBarOptions: {

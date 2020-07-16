@@ -7,11 +7,13 @@ import { RadioButton } from 'react-native-paper';
 import _ from 'lodash';
 import Carousel from 'react-native-snap-carousel';
 import * as ImagePicker from 'expo-image-picker';
-import firebase from '../../firebase/fb';
+import firebasefb from '../../firebase/fb';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import firebase from 'firebase';
 
 //Post the courier in the database
 class Post extends Component {
+
   state = {
     id: '',
     title: "",
@@ -40,6 +42,8 @@ class Post extends Component {
     //put the info of the moto in the courier as a key
     this.setState({motoInfo: item});
   }
+    
+
 
   _getImage = async (id) => {
     //Save the profile image url in a variable
@@ -57,8 +61,7 @@ class Post extends Component {
   }
 
   componentDidMount(){
-    console.log('-------------------')
-    //console.log(data);
+    console.log(firebase.auth())
     //Call the function that shows the motos in database
     this.props.getMotos()
   }
@@ -91,7 +94,7 @@ class Post extends Component {
 
     const response = await fetch(uri);
     const blob = await response.blob();    
-    var ref = firebase.storage().ref().child('courier/' + id);
+    var ref = firebasefb.storage().ref().child('courier/' + id);
     return ref.put(blob)
   }
 
@@ -131,7 +134,8 @@ class Post extends Component {
       if(parseInt(this.state.age) < 18) {
         Alert.alert('Your must be 18+');
       } else {
-        this.props.postBlogs(this.state.id, this.state.title, this.state.age, 0, this.state.description, this.state.image, this.state.motoInfo, this.state.time, this.state.rate)
+        console.log('-----');
+        postBlogs(this.state.id, this.state.title, this.state.age, 0, this.state.description, this.state.image, this.state.motoInfo, this.state.time, this.state.rate);
         this.setState({
           id: '',
           title: "",
@@ -144,8 +148,9 @@ class Post extends Component {
           rate: '',
           propPhoto: 'Choose a profile photo../',
           checked: ''
-        })
-        this.props.navigation.navigate('Router')
+        });
+        console.log('-----');
+        this.props.navigation.navigate('Routes')
       }
     }
   }
@@ -205,7 +210,7 @@ class Post extends Component {
         </View>
 
         <View style={{marginTop:40, flex: 0.4, alignItems:'center'}}>
-          <Text style={styles.h1}>Now, pick your next best friend:</Text>
+          <Text style={styles.h1}>Ahora, elige tu futura moto:</Text>
         </View>
         <View>
           {
@@ -316,4 +321,4 @@ function mapStateToProps(state){
   }
   }
   
-export default connect(mapStateToProps, {postBlogs, getMotos})(Post);
+export default connect(mapStateToProps, {getMotos})(Post);

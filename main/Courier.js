@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Router from '../components/couriers/Router/Router'
+import Router from '../components/couriers/Router/Router';
+import Routes from '../components/couriers/Routes';
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 import ReduxThunk from 'redux-thunk';
@@ -8,19 +9,17 @@ import firebase from 'firebase';
 
 class Tendero extends Component {
 
-  constructor(props) {
-    super(props);
-      this.state = {
-        data: ''
-      };
-  }
-
   componentDidMount = () => {
-    const { navigation } = this.props;
-    const data = navigation.getParam('rappiData', 'NO-ID');
-    const profile = this.getProfile(data.token_type, data.access_token);
+    //const { navigation } = this.props;
+    //const data = navigation.getParam('aux', 'NO-ID');
+    //console.log(data);
+    console.log(this.aux);
+    //const profile = this.getProfile(data.token_type, data.access_token);
   }
 
+  aux = this.props.navigation.getParam('aux', 'NO-ID');;
+
+/*
   getProfile = async (token_type, access_token) => {
     const baseUrl = 'http://microservices.dev.rappi.com/api/storekeepers-ms/storekeeper/rappitendero/profile?cache=false';
     const response = await fetch(baseUrl, {
@@ -48,14 +47,16 @@ class Tendero extends Component {
             })
     console.log(this.state.data);
   }
-
+*/
   render() {
     const state = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 
     return (
       <Provider store={state}>
-        <Router />
-      </Provider>
+        { this.aux === 'login' ?
+          <Routes /> : <Router />
+        }
+       </Provider> 
     );
   }
 }
